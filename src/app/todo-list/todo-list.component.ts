@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import AppState from '../store/models/app-state.model';
 import { Observable } from 'rxjs';
 import { LoadTodoListAction } from '../store/actions/todoList.actions';
+import { LoadTodoAction } from '../store/actions/todo.actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -31,11 +32,10 @@ export class TodoListComponent implements OnInit {
     this.store.dispatch(new LoadTodoListAction());
   }
 
-  onTodoClick(): void {
+  onTodoClick(todo: TodoEntity): void {
 
   }
 
   deleteTodo(todo: TodoEntity): void {
-
   }
 }
