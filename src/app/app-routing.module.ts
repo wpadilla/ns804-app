@@ -5,6 +5,7 @@ import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { PublicGuardService as PublicGuard } from './services/public-guard.service';
 import { RegisterComponent } from './register/register.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     canActivate: [PublicGuard]
+  },
+  {
+    path: 'todos',
+    component: TodoListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
