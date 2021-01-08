@@ -29,7 +29,7 @@ export class LoginFailureAction implements ActionEntity {
   constructor(public payload: Error) {}
 }
 
-export type AuthActions =
+export type AuthActions = LoginAction |
   LoginSuccessAction |
   LoginFailureAction;
 
