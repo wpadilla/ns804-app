@@ -52,10 +52,32 @@ export class DeleteTodoFailureAction implements Action {
 
   constructor(public payload: Error) {}
 }
+
+/// ADD TODO
+export class AddTodoAction implements Action {
+  readonly type = TodoActionsTypes.ADD_TODO;
+
+  constructor(public payload: Exclude<TodoEntity, '_id'>) {}
+
+}
+export class AddTodoSuccessAction implements Action {
+  readonly type = TodoActionsTypes.ADD_TODO_SUCCESS;
+
+  constructor(public payload: TodoEntity) {}
+
+}
+export class AddTodoFailureAction implements Action {
+  readonly type = TodoActionsTypes.ADD_TODO_FAILURE;
+
+  constructor(public payload: Error) {}
+}
 export type TodoActions =
   LoadTodoAction |
   LoadTodoSuccessAction |
   LoadTodoFailureAction |
   DeleteTodoAction |
   DeleteTodoSuccessAction |
-  DeleteTodoFailureAction;
+  DeleteTodoFailureAction |
+  AddTodoAction |
+  AddTodoSuccessAction |
+  AddTodoFailureAction;
