@@ -34,7 +34,28 @@ export class LoadTodoFailureAction implements Action {
   constructor(public payload: Error) {}
 }
 
+/// DELETE TODO
+export class DeleteTodoAction implements Action {
+  readonly type = TodoActionsTypes.DELETE_TODO;
+
+  constructor(public payload: string) {}
+
+}
+export class DeleteTodoSuccessAction implements Action {
+  readonly type = TodoActionsTypes.DELETE_TODO_SUCCESS;
+
+  constructor(public payload: TodoEntity) {}
+
+}
+export class DeleteTodoFailureAction implements Action {
+  readonly type = TodoActionsTypes.DELETE_TODO_FAILURE;
+
+  constructor(public payload: Error) {}
+}
 export type TodoActions =
   LoadTodoAction |
-LoadTodoSuccessAction |
-LoadTodoFailureAction;
+  LoadTodoSuccessAction |
+  LoadTodoFailureAction |
+  DeleteTodoAction |
+  DeleteTodoSuccessAction |
+  DeleteTodoFailureAction;
