@@ -1,4 +1,4 @@
-<h2>All Todos</h2>
+<h2>All Todos <button (click)="goToCreate()" style="float: right">Go to Create Todo</button></h2>
 <h4 *ngIf="loading | async">Loading...</h4>
 <ul>
   <div *ngFor="let todo of todos | async" (click)="onTodoClick(todo)">
