@@ -1,4 +1,5 @@
 <div>
+  <h3 *ngIf="loading | async">Loading...</h3>
   <div>
     <input type="text" [formControl]="title" placeholder="title" >
   </div>

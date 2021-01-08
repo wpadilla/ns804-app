@@ -2,7 +2,7 @@
 <b>Titulo:</b> &nbsp; <span *ngIf="!edit; else inputTitle">{{ todo && todo.title }}</span>
 
 <ng-template #inputTitle>
-  <input type="text" [formControl]="title" >
+  <input type="text" [formControl]="title">
 </ng-template>
 <br>
 <br>
@@ -16,13 +16,16 @@
 <button *ngIf="!edit" (click)="onEdit()" [disabled]="loading | async">Edit</button>
 <br>
 <div *ngIf="edit">
-  <button *ngIf="edit" (click)="edit = false">Cancel</button>
+  <button *ngIf="edit" (click)="edit = false" [disabled]="loading | async">Cancel</button>
   <br>
   <br>
 </div>
 <div *ngIf="edit">
-  <button (click)="update()">Update</button>
+  <button (click)="update()" [disabled]="loading | async">Update</button>
 <br>
 </div>
 <br>
-<button (click)="deleteTodo()">Delete</button>
+<button (click)="deleteTodo()" [disabled]="loading | async">Delete</button>
+<br>
+<br>
+<a routerLink="" >Go to Home </a>

@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class CreateTodoComponent implements OnInit {
   title: FormControl = new FormControl();
   desc: FormControl = new FormControl();
-  createdTodo: Observable<TodoEntity> = this.store.select((state: AppState) => state.todo && state.todo.data);
+  loading: Observable<boolean> = this.store.select((state: AppState) => state.todo && state.todo.loading);
 
   constructor(
     private store: Store,
@@ -32,8 +32,8 @@ export class CreateTodoComponent implements OnInit {
       desc: this.desc.value,
     };
     this.store.dispatch(new AddTodoAction(payload));
-    this.createdTodo.subscribe(todo => {
-      if (todo){
+    this.loading.subscribe(loadStatus => {
+      if (!loadStatus){
         this.router.navigate(['']);
       }
     });

@@ -1,3 +1,8 @@
-.delete-todo {
+.todo-item {
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }
+
+

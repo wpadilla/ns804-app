@@ -35,8 +35,9 @@ export class TodoService extends TokenService{
       });
   }
 
-  public updateTodo(_id: string): Observable<any> {
-    return this.http.put(`http://localhost:3000/api/todos/${_id}`,
+  public updateTodo(todo: { id: string, data: Omit<TodoEntity, '_id'> }): Observable<any> {
+    return this.http.put(`http://localhost:3000/api/todos/${todo.id}`,
+      todo.data,
       {
         headers: {
           Authorization: this.token,

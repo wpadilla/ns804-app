@@ -3,7 +3,7 @@ import TodoEntity from '../store/models/todo.model';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import AppState from '../store/models/app-state.model';
-import { DeleteTodoAction, LoadTodoAction } from '../store/actions/todo.actions';
+import { DeleteTodoAction, LoadTodoAction, UpdateTodoAction } from '../store/actions/todo.actions';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 
@@ -46,25 +46,40 @@ export class TodoViewComponent implements OnInit {
 
           });
       }
-    });
+    }).unsubscribe();
   }
 
-  onEdit() {
+  onEdit(): void {
     this.edit = true;
     this.title.setValue(this.todo && this.todo.title);
     this.desc.setValue(this.todo && this.todo.desc);
   }
 
-  deleteTodo() {
+  deleteTodo(): void {
     this.store.dispatch(new DeleteTodoAction(this.id));
-    this.router.navigate(['/']);
-
-    // this.loading.subscribe(loadStatus => {
-    //
-    // })
+    this.loading.subscribe(loadStatus => {
+      if(!loadStatus ) {
+        this.router.navigate(['/']);
+      }
+      }).unsubscribe();
   }
 
-  update() {
-
+  update(): void {
+    const data = { title: this.title.value, desc: this.desc.value };
+    this.store.dispatch(new UpdateTodoAction({id: this.id, data }));
+    this.desc.disable();
+    this.title.disable();
+    this.loading.subscribe(loadStatus => {
+      if( !loadStatus ) {
+        this.desc.enable();
+        this.title.enable();
+        this.edit = false;
+        this.store.select((state: AppState) => {
+          if (state.todo){
+            this.todo = state.todo.data;
+          }
+        })
+      }
+    }).unsubscribe();
   }
 }
