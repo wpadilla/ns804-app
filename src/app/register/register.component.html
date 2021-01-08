@@ -1,1 +1,11 @@
-<p>register works!</p>
+<div>
+  <div>
+    <input type="text" [formControl]="email" placeholder="email" >
+  </div>
+  <div>
+    <input type="text" [formControl]="password" placeholder="password" >
+  </div>
+  <div>
+    <button (click)="register()">Register</button>
+  </div>
+</div>
