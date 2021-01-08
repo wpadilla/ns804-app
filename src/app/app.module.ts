@@ -20,6 +20,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoListService } from './services/todo-list.service';
 import { todoListReducer } from './store/reducers/todo-list.reducer';
 import { LoadTodoListEffect } from './store/effects/load-todo-list.effect';
+import { TodoViewComponent } from './todo-view/todo-view.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LoadTodoListEffect } from './store/effects/load-todo-list.effect';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    TodoListComponent
+    TodoListComponent,
+    TodoViewComponent
   ],
   imports: [
     JwtModule,
