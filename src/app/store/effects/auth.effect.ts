@@ -12,6 +12,7 @@ import {
   RegisterSuccessAction
 } from '../actions/auth.actions';
 import UserEntity, { TokenEntity } from '../models/user.model';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -24,6 +25,7 @@ export class AuthEffect {
       .pipe(
         map((res: TokenEntity) => {
           localStorage.setItem('token', res.token);
+          this.router.navigate(['']);
           return new LoginSuccessAction(res);
         }),
         catchError((err: Error) => of(new LoginFailureAction(err)))
@@ -38,6 +40,7 @@ export class AuthEffect {
         .pipe(
           map((res: UserEntity) => {
             localStorage.setItem('token', res);
+            this.router.navigate(['login']);
             return new RegisterSuccessAction(res);
           }),
           catchError((err: Error) => of(new RegisterFailureAction(err)))
@@ -48,5 +51,6 @@ export class AuthEffect {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
+    private router: Router,
   ) {}
 }

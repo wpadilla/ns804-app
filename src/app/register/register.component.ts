@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { RegisterAction } from '../store/actions/auth.actions';
 import { Store } from '@ngrx/store';
 import AppState from '../store/models/app-state.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
