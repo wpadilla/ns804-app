@@ -5,6 +5,7 @@ import { map, catchError, mergeMap } from 'rxjs/operators';
 import TodoEntity from '../models/todo.model';
 import { TodoService } from '../../services/todo.service';
 import {
+  AddTodoAction, AddTodoFailureAction, AddTodoSuccessAction,
   DeleteTodoAction, DeleteTodoFailureAction,
   DeleteTodoSuccessAction,
   LoadTodoAction,
@@ -40,6 +41,20 @@ export class TodoEffect {
             return new DeleteTodoSuccessAction(res.data);
           }),
           catchError((err: Error) => of(new DeleteTodoFailureAction(err)))
+        )}
+    )
+    )
+  );
+
+  addTodo = createEffect(() => this.actions$.pipe(
+    ofType<AddTodoAction>(TodoActionsTypes.ADD_TODO),
+    mergeMap((data: AddTodoAction) => {
+      return this.todoService.addTodo(data.payload)
+        .pipe(
+          map((res: { data: TodoEntity }) => {
+            return new AddTodoSuccessAction(res.data);
+          }),
+          catchError((err: Error) => of(new AddTodoFailureAction(err)))
         )}
     )
     )
