@@ -5,7 +5,7 @@ export interface AuthState {
   user?: UserEntity,
 }
 
-const initialState = { user: undefined };
+const initialState: AuthState = { user: undefined };
 
 export const authReducer = (state: AuthState = initialState, action: AuthActions) => {
   switch (action.type) {
