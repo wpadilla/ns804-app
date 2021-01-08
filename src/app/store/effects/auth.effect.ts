@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { map, catchError, exhaustMap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
-import { AuthActionsType, LoginAction, LoginSuccessAction } from '../actions/auth.actions';
+import { AuthActionsType, LoginAction, LoginFailureAction, LoginSuccessAction } from '../actions/auth.actions';
 import { TokenEntity } from '../models/user.model';
 
 
@@ -13,13 +13,13 @@ export class AuthEffect {
   authenticate = createEffect(() => this.actions$.pipe(
     ofType<LoginAction>(AuthActionsType.LOGIN),
     exhaustMap((data: LoginAction) =>
-      this.loginService.authenticate(data.payload)
+      this.authService.authenticate(data.payload)
       .pipe(
         map((res: TokenEntity) => {
           localStorage.setItem('token', res.token);
           return new LoginSuccessAction(res);
         }),
-        catchError(() => EMPTY)
+        catchError((err: Error) => of(new LoginFailureAction(err)))
       ))
     )
   );
@@ -27,19 +27,19 @@ export class AuthEffect {
   register = createEffect(() => this.actions$.pipe(
     ofType<LoginAction>(AuthActionsType.LOGIN),
     exhaustMap((data: LoginAction) =>
-      this.loginService.authenticate(data.payload)
+      this.authService.authenticate(data.payload)
         .pipe(
           map((res: TokenEntity) => {
             localStorage.setItem('token', res.token);
             return new LoginSuccessAction(res);
           }),
-          catchError(() => EMPTY)
+          catchError((err: Error) => of(new LoginFailureAction(err)))
         ))
     )
   );
 
   constructor(
     private actions$: Actions,
-    private loginService: AuthService,
+    private authService: AuthService,
   ) {}
 }
