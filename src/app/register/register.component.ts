@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   email: FormControl = new FormControl();
   password: FormControl = new FormControl();
   loading: Observable<boolean> = this.store.select((state: AppState) => state.auth && state.auth.loading);
+  registerErr: Observable<Error> = this.store.select((state: AppState) => state.auth && state.auth.err);
 
   constructor(
     private store: Store<AppState>,

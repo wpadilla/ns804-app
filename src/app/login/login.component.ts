@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   email: FormControl = new FormControl();
   password: FormControl = new FormControl();
   loading: Observable<boolean> = this.store.select((state: AppState) => state.auth && state.auth.loading);
+  loginErr: Observable<Error> = this.store.select((state: AppState) => state.auth && state.auth.err);
+
 
   constructor(
     private store: Store<AppState>,
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
       if(!loadState) {
         this.email.enable();
         this.password.enable();
+        this.router.navigate(['']);
       }
     });
   }

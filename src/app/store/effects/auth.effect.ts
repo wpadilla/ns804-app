@@ -24,11 +24,14 @@ export class AuthEffect {
       this.authService.authenticate(data.payload)
       .pipe(
         map((res: TokenEntity) => {
+          console.log('ress', res);
           localStorage.setItem('token', res.token);
-          this.router.navigate(['']);
           return new LoginSuccessAction(res);
         }),
-        catchError((err: Error) => of(new LoginFailureAction(err)))
+        catchError((err: any) => {
+          console.log(err, 'err');
+          return of(new LoginFailureAction(err.error));
+        })
       ))
     )
   );
@@ -39,7 +42,6 @@ export class AuthEffect {
       this.authService.register(data.payload)
         .pipe(
           map((res: UserEntity) => {
-            this.router.navigate(['']);
             return new RegisterSuccessAction(res);
           }),
           catchError((err: Error) => of(new RegisterFailureAction(err)))

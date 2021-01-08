@@ -12,6 +12,9 @@
     <button (click)="register()" [disabled]="loading | async">Register</button>
   </div>
   <br>
+  <span>{{ (registerErr | async).message }}</span>
+  <br>
+  <br>
   <div>
     <a *ngIf="!(loading | async)" [routerLink]="'login'">Go to Login</a>
   </div>

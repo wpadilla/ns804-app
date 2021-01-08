@@ -5,12 +5,15 @@
   </div>
   <br>
   <div>
-    <input type="text" [formControl]="password" placeholder="password" >
+    <input type="password" [formControl]="password" placeholder="password" >
   </div>
   <div>
     <br>
     <button (click)="login()" [disabled]="loading | async">Login</button>
   </div>
+  <br>
+  <span class="error-msg">{{ (loginErr | async).message }}</span>
+  <br>
   <br>
   <div>
     <button (click)="goToRegister()" [disabled]="loading | async">Go to Register</button>
