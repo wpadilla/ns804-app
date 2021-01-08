@@ -1,11 +1,28 @@
 <h3 *ngIf="loading | async">Loading...</h3>
-<b>Titulo:</b> &nbsp; <span>{{ todo && todo.title }}</span>
+<b>Titulo:</b> &nbsp; <span *ngIf="!edit; else inputTitle">{{ todo && todo.title }}</span>
+
+<ng-template #inputTitle>
+  <input type="text" [formControl]="title" >
+</ng-template>
 <br>
 <br>
-<b>Description:</b> &nbsp; <span>{{ todo && todo.desc }}</span>
+<b>Description:</b> &nbsp; <span *ngIf="!edit; else inputDesc">{{ todo && todo.desc }}</span>
+<ng-template #inputDesc>
+  <input type="text" [formControl]="desc">
+</ng-template>
+
 <br>
 <br>
-<button>Edit</button>
+<button *ngIf="!edit" (click)="onEdit()" [disabled]="loading | async">Edit</button>
 <br>
+<div *ngIf="edit">
+  <button *ngIf="edit" (click)="edit = false">Cancel</button>
+  <br>
+  <br>
+</div>
+<div *ngIf="edit">
+  <button (click)="update()">Update</button>
+<br>
+</div>
 <br>
 <button (click)="deleteTodo()">Delete</button>
