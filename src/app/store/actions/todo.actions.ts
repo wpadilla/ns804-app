@@ -71,6 +71,25 @@ export class AddTodoFailureAction implements Action {
 
   constructor(public payload: Error) {}
 }
+
+/// UPDATE TODO
+export class UpdateTodoAction implements Action {
+  readonly type = TodoActionsTypes.UPDATE_TODO;
+
+  constructor(public payload: Omit<TodoEntity, '_id'>) {}
+
+}
+export class UpdateTodoSuccessAction implements Action {
+  readonly type = TodoActionsTypes.UPDATE_TODO_SUCCESS;
+
+  constructor(public payload: TodoEntity) {}
+
+}
+export class UpdateTodoFailureAction implements Action {
+  readonly type = TodoActionsTypes.UPDATE_TODO_FAILURE;
+
+  constructor(public payload: Error) {}
+}
 export type TodoActions =
   LoadTodoAction |
   LoadTodoSuccessAction |
@@ -80,4 +99,7 @@ export type TodoActions =
   DeleteTodoFailureAction |
   AddTodoAction |
   AddTodoSuccessAction |
-  AddTodoFailureAction;
+  AddTodoFailureAction |
+  UpdateTodoAction |
+  UpdateTodoSuccessAction |
+  UpdateTodoFailureAction;
