@@ -24,6 +24,7 @@ import { TodoViewComponent } from './todo-view/todo-view.component';
 import { TodoService } from './services/todo.service';
 import { TodoEffect } from './store/effects/todo.effect';
 import { todoReducer } from './store/reducers/todo.reducer';
+import TokenService from './services/token.service';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { todoReducer } from './store/reducers/todo.reducer';
     PublicGuardService,
     TodoListService,
     TodoService,
+    TokenService,
   ],
   bootstrap: [AppComponent]
 })
