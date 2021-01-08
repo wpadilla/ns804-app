@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, catchError, exhaustMap } from 'rxjs/operators';
 import { LoginService } from '../../services/auth/login.service';
 import { loginAction } from '../actions/auth.actions';
 
@@ -11,7 +11,8 @@ export class AuthEffect {
 
   authenticate = createEffect(() => this.actions$.pipe(
     ofType(loginAction),
-    mergeMap((action) => this.loginService.authenticate(action.credentials)
+    exhaustMap((action) =>
+      this.loginService.authenticate(action.credentials)
       .pipe(
         map(movies => ({ type: '[Movies API] Movies Loaded Success', payload: movies })),
         catchError(() => EMPTY)
