@@ -57,7 +57,7 @@ export class DeleteTodoFailureAction implements Action {
 export class AddTodoAction implements Action {
   readonly type = TodoActionsTypes.ADD_TODO;
 
-  constructor(public payload: Exclude<TodoEntity, '_id'>) {}
+  constructor(public payload: Omit<TodoEntity, '_id'>) {}
 
 }
 export class AddTodoSuccessAction implements Action {

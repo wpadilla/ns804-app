@@ -35,7 +35,7 @@ export class TodoService extends TokenService{
       });
   }
 
-  public addTodo(todo: TodoEntity): Observable<any> {
+  public addTodo(todo: Omit<TodoEntity, '_id'>): Observable<any> {
     return this.http.post(`http://localhost:3000/api/todos/`, todo,
       {
         headers: {
