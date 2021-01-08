@@ -66,5 +66,24 @@ export const todoReducer = (state: TodoState = initialState, action: TodoActions
         payload: undefined,
         err: action.payload,
       };
+
+    case TodoActionsTypes.UPDATE_TODO:
+      return {
+        ...state,
+        loading: true,
+      };
+    case TodoActionsTypes.UPDATE_TODO_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+      };
+    case TodoActionsTypes.UPDATE_TODO_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        payload: undefined,
+        err: action.payload,
+      };
   }
 };
