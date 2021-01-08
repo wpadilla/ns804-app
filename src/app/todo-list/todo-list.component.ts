@@ -39,4 +39,8 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(todo: TodoEntity): void {
   }
+
+  goToCreate() {
+    this.router.navigate(['create-todo']);
+  }
 }

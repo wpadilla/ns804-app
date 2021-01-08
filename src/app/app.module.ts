@@ -25,6 +25,7 @@ import { TodoService } from './services/todo.service';
 import { TodoEffect } from './store/effects/todo.effect';
 import { todoReducer } from './store/reducers/todo.reducer';
 import TokenService from './services/token.service';
+import { CreateTodoComponent } from './create-todo/create-todo.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import TokenService from './services/token.service';
     RegisterComponent,
     HomeComponent,
     TodoListComponent,
-    TodoViewComponent
+    TodoViewComponent,
+    CreateTodoComponent
   ],
   imports: [
     JwtModule,
