@@ -1,10 +1,13 @@
 <div>
+  <h3 *ngIf="loading | async">Loading...</h3>
   <div>
     <input type="text" [formControl]="email" placeholder="email" >
   </div>
+  <br>
   <div>
-    <input type="text" [formControl]="password" placeholder="password" >
+    <input type="password" [formControl]="password" placeholder="password" >
   </div>
+  <br>
   <div>
     <button (click)="register()">Register</button>
   </div>

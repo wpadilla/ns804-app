@@ -5,6 +5,7 @@ export interface AuthState {
   token?: string;
   err?: Error;
   user?: UserEntity;
+  loading?: boolean;
 }
 
 const initialState: AuthState = { token: undefined };

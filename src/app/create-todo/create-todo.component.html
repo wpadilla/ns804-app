@@ -2,6 +2,7 @@
   <h3 *ngIf="loading | async">Loading...</h3>
   <div>
     <input type="text" [formControl]="title" placeholder="title" >
+    <a routerLink="" class="go-to-home"> Go To Home</a>
   </div>
   <br>
   <div>
@@ -9,10 +10,10 @@
   </div>
   <br>
   <div>
-    <button (click)="create()">Create Todo</button>
+    <button (click)="create()" [disabled]="!title.value || !desc.value || (loading | async)">Create Todo</button>
   </div>
   <br>
   <div>
-    <a routerLink="">Go to Home</a>
+    <a *ngIf="!loading" routerLink="">Go to Home</a>
   </div>
 </div>

@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AddTodoAction } from '../store/actions/todo.actions';
 import { Observable } from 'rxjs';
-import TodoEntity from '../store/models/todo.model';
 import AppState from '../store/models/app-state.model';
 import { Router } from '@angular/router';
 
@@ -23,7 +22,6 @@ export class CreateTodoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.complete();
   }
 
   create() {
@@ -32,8 +30,12 @@ export class CreateTodoComponent implements OnInit {
       desc: this.desc.value,
     };
     this.store.dispatch(new AddTodoAction(payload));
+    this.title.disable();
+    this.desc.disable();
     this.loading.subscribe(loadStatus => {
       if (!loadStatus){
+        this.title.enable();
+        this.desc.enable();
         this.router.navigate(['']);
       }
     });
