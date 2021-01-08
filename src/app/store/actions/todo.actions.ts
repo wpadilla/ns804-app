@@ -18,11 +18,14 @@ export enum TodoActionsTypes {
 
 export class LoadTodoAction implements Action {
   readonly type = TodoActionsTypes.LOAD_TODO;
+
+  constructor(public payload: string) {}
+
 }
 export class LoadTodoSuccessAction implements Action {
   readonly type = TodoActionsTypes.LOAD_TODO_SUCCESS;
 
-  constructor(public payload: Array<TodoEntity>) {}
+  constructor(public payload: TodoEntity) {}
 
 }
 export class LoadTodoFailureAction implements Action {

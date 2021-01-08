@@ -22,6 +22,8 @@ import { todoListReducer } from './store/reducers/todo-list.reducer';
 import { LoadTodoListEffect } from './store/effects/load-todo-list.effect';
 import { TodoViewComponent } from './todo-view/todo-view.component';
 import { TodoService } from './services/todo.service';
+import { TodoEffect } from './store/effects/todo.effect';
+import { todoReducer } from './store/reducers/todo.reducer';
 
 
 @NgModule({
@@ -41,10 +43,11 @@ import { TodoService } from './services/todo.service';
     HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25, }),
-    EffectsModule.forRoot([AuthEffect, LoadTodoListEffect]),
+    EffectsModule.forRoot([AuthEffect, LoadTodoListEffect, TodoEffect]),
     StoreModule.forRoot({
       auth: authReducer,
       todoList: todoListReducer,
+      todo: todoReducer,
     }),
   ],
   providers: [
