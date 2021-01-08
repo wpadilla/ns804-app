@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       if(!loadState) {
         this.email.enable();
         this.password.enable();
-        this.router.navigate(['']);
+        location.href = '';
       }
     });
   }

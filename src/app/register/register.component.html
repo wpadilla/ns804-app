@@ -12,7 +12,7 @@
     <button (click)="register()" [disabled]="loading | async">Register</button>
   </div>
   <br>
-  <span>{{ (registerErr | async).message }}</span>
+  <span class="error-msg">{{ (registerErr | async) && (registerErr | async).message }}</span>
   <br>
   <br>
   <div>

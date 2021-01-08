@@ -12,7 +12,7 @@
     <button (click)="login()" [disabled]="loading | async">Login</button>
   </div>
   <br>
-  <span class="error-msg">{{ (loginErr | async).message }}</span>
+  <span class="error-msg">{{ (loginErr | async) && (loginErr | async).message }}</span>
   <br>
   <br>
   <div>

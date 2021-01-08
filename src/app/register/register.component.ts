@@ -34,7 +34,11 @@ export class RegisterComponent implements OnInit {
       if(!loadState) {
         this.email.enable();
         this.password.enable();
-        this.router.navigate(['login']);
+        this.registerErr.subscribe(err => {
+          if(!err) {
+            this.router.navigate(['login']);
+          }
+        });
       }
     });
   }

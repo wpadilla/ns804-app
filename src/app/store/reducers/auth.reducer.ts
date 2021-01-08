@@ -22,6 +22,7 @@ export const authReducer = (state: AuthState = initialState, action: AuthActions
         ...state,
         loading: false,
         token: action.payload.token,
+        err: undefined
       };
     case AuthActionsType.LOGIN_FAILURE:
       return {
@@ -42,6 +43,8 @@ export const authReducer = (state: AuthState = initialState, action: AuthActions
         ...state,
         loading: false,
         user: action.payload,
+        err: undefined,
+
       };
     case AuthActionsType.REGISTER_FAILURE:
       return {
