@@ -1,4 +1,5 @@
 <div>
+  <h3 *ngIf="loading | async">Loading...</h3>
   <div>
     <input type="text" [formControl]="email" placeholder="email" >
   </div>
@@ -8,10 +9,10 @@
   </div>
   <div>
     <br>
-    <button (click)="login()">Login</button>
+    <button (click)="login()" [disabled]="loading | async">Login</button>
   </div>
   <br>
   <div>
-    <button (click)="goToRegister()">Go to Register</button>
+    <button (click)="goToRegister()" [disabled]="loading | async">Go to Register</button>
   </div>
 </div>

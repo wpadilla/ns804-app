@@ -29,5 +29,12 @@ export class RegisterComponent implements OnInit {
     this.store.dispatch(new RegisterAction(payload));
     this.email.disable();
     this.password.disable();
+    this.loading.subscribe(loadState => {
+      if(!loadState) {
+        this.email.enable();
+        this.password.enable();
+        this.router.navigate(['login']);
+      }
+    });
   }
 }

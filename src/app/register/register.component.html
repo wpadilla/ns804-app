@@ -9,10 +9,10 @@
   </div>
   <br>
   <div>
-    <button (click)="register()">Register</button>
+    <button (click)="register()" [disabled]="loading | async">Register</button>
   </div>
   <br>
   <div>
-    <a [routerLink]="'login'">Go to Login</a>
+    <a *ngIf="!(loading | async)" [routerLink]="'login'">Go to Login</a>
   </div>
 </div>
