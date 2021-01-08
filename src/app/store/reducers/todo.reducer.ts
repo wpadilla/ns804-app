@@ -29,6 +29,42 @@ export const todoReducer = (state: TodoState = initialState, action: TodoActions
         payload: undefined,
         err: action.payload,
       };
+    case TodoActionsTypes.DELETE_TODO:
+      return {
+        ...state,
+        loading: true,
+      };
+    case TodoActionsTypes.DELETE_TODO_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+      };
+    case TodoActionsTypes.DELETE_TODO_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        payload: undefined,
+        err: action.payload,
+      };
 
+    case TodoActionsTypes.ADD_TODO:
+      return {
+        ...state,
+        loading: true,
+      };
+    case TodoActionsTypes.ADD_TODO_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+      };
+    case TodoActionsTypes.ADD_TODO_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        payload: undefined,
+        err: action.payload,
+      };
   }
 };
