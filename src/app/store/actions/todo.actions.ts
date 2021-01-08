@@ -30,3 +30,8 @@ export class LoadTodoFailureAction implements Action {
 
   constructor(public payload: Error) {}
 }
+
+export type TodoActions =
+  LoadTodoAction |
+LoadTodoSuccessAction |
+LoadTodoFailureAction;
