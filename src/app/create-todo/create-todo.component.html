@@ -1,1 +1,17 @@
-<p>create-todo works!</p>
+<div>
+  <div>
+    <input type="text" [formControl]="title" placeholder="title" >
+  </div>
+  <br>
+  <div>
+    <input type="text" [formControl]="desc" placeholder="desc" >
+  </div>
+  <br>
+  <div>
+    <button (click)="create()">Create Todo</button>
+  </div>
+  <br>
+  <div>
+    <a routerLink="">Go to Home</a>
+  </div>
+</div>

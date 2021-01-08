@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { PublicGuardService as PublicGuard } from './services/public-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { TodoViewComponent } from './todo-view/todo-view.component';
+import { CreateTodoComponent } from './create-todo/create-todo.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'todo/:id',
     component: TodoViewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'create-todo',
+    component: CreateTodoComponent,
     canActivate: [AuthGuard]
   },
   {
