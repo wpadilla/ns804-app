@@ -4,7 +4,14 @@ import { of } from 'rxjs';
 import { map, catchError, mergeMap } from 'rxjs/operators';
 import TodoEntity from '../models/todo.model';
 import { TodoService } from '../../services/todo.service';
-import { LoadTodoAction, LoadTodoFailureAction, LoadTodoSuccessAction, TodoActionsTypes } from '../actions/todo.actions';
+import {
+  DeleteTodoAction, DeleteTodoFailureAction,
+  DeleteTodoSuccessAction,
+  LoadTodoAction,
+  LoadTodoFailureAction,
+  LoadTodoSuccessAction,
+  TodoActionsTypes
+} from '../actions/todo.actions';
 
 
 @Injectable()
@@ -21,6 +28,20 @@ export class TodoEffect {
         catchError((err: Error) => of(new LoadTodoFailureAction(err)))
       )}
       )
+    )
+  );
+
+  deleteTodo = createEffect(() => this.actions$.pipe(
+    ofType<DeleteTodoAction>(TodoActionsTypes.DELETE_TODO),
+    mergeMap((data: DeleteTodoAction) => {
+      return this.todoService.deleteTodo(data.payload)
+        .pipe(
+          map((res: { data: TodoEntity }) => {
+            return new DeleteTodoSuccessAction(res.data);
+          }),
+          catchError((err: Error) => of(new DeleteTodoFailureAction(err)))
+        )}
+    )
     )
   );
 

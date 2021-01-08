@@ -3,7 +3,7 @@ import TodoEntity from '../store/models/todo.model';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import AppState from '../store/models/app-state.model';
-import { LoadTodoAction } from '../store/actions/todo.actions';
+import { DeleteTodoAction, LoadTodoAction } from '../store/actions/todo.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,6 +14,8 @@ import { Observable } from 'rxjs';
 export class TodoViewComponent implements OnInit {
   todo: TodoEntity = {} as any;
   loading: Observable<boolean> = this.store.select((state: AppState) => state.todo && state.todo.loading);
+  id = this.route.snapshot.paramMap.get('id');
+
   constructor(
     private store: Store,
     private route: ActivatedRoute,
@@ -21,13 +23,12 @@ export class TodoViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
     this.store.select((state: AppState) =>
-      state.todoList ? state.todoList.data.find(item => item._id === id) : undefined,
+      state.todoList ? state.todoList.data.find(item => item._id === this.id) : undefined,
     ).subscribe(item => {
       this.todo = item || {} as any;
       if (!item) {
-        this.store.dispatch(new LoadTodoAction(id));
+        this.store.dispatch(new LoadTodoAction(this.id));
         this.store.select((state: AppState) => state.todo && state.todo.data)
           .subscribe(todoItem => {
             this.todo = todoItem;
@@ -40,5 +41,15 @@ export class TodoViewComponent implements OnInit {
           });
       }
     });
+  }
+
+
+  deleteTodo() {
+    this.store.dispatch(new DeleteTodoAction(this.id));
+    this.loading.subscribe(loadStatus => {
+      if(!loadStatus) {
+        this.router.navigate(['']);
+      }
+    })
   }
 }

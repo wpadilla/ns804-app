@@ -22,7 +22,7 @@ export class TodoListComponent implements OnInit {
       return data;
     });
 
-  loading: Observable<boolean> = this.store.select((state: AppState) => state.todoList.loading);
+  loading: Observable<boolean> = this.store.select((state: AppState) => state.todoList && state.todoList.loading);
 
   constructor(
     private store: Store,
