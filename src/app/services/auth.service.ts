@@ -20,6 +20,12 @@ export class AuthService {
       );
   }
 
+  public register(credentials: UserEntity): Observable<any> {
+    return this.http.post('https://serverless.wpadilla.vercel.app/api/auth/register',
+      credentials
+    );
+  }
+
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);

@@ -3,8 +3,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
 import { map, catchError, exhaustMap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
-import { AuthActionsType, LoginAction, LoginFailureAction, LoginSuccessAction } from '../actions/auth.actions';
-import { TokenEntity } from '../models/user.model';
+import {
+  AuthActionsType,
+  LoginAction,
+  LoginFailureAction,
+  LoginSuccessAction,
+  RegisterAction, RegisterFailureAction,
+  RegisterSuccessAction
+} from '../actions/auth.actions';
+import UserEntity, { TokenEntity } from '../models/user.model';
 
 
 @Injectable()
@@ -25,15 +32,15 @@ export class AuthEffect {
   );
 
   register = createEffect(() => this.actions$.pipe(
-    ofType<LoginAction>(AuthActionsType.LOGIN),
-    exhaustMap((data: LoginAction) =>
-      this.authService.authenticate(data.payload)
+    ofType<RegisterAction>(AuthActionsType.REGISTER),
+    exhaustMap((data: RegisterAction) =>
+      this.authService.register(data.payload)
         .pipe(
-          map((res: TokenEntity) => {
-            localStorage.setItem('token', res.token);
-            return new LoginSuccessAction(res);
+          map((res: UserEntity) => {
+            localStorage.setItem('token', res);
+            return new RegisterSuccessAction(res);
           }),
-          catchError((err: Error) => of(new LoginFailureAction(err)))
+          catchError((err: Error) => of(new RegisterFailureAction(err)))
         ))
     )
   );
