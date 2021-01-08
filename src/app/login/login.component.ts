@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { LoginAction } from '../store/actions/auth.actions';
 import AppState from '../store/models/app-state.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -24,5 +26,9 @@ export class LoginComponent implements OnInit {
   login(): void {
     const payload = { email: this.email.value, password: this.password.value };
     this.store.dispatch(new LoginAction(payload));
+  }
+
+  goToRegister(): void {
+    this.router.navigate(['register']);
   }
 }

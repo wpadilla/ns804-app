@@ -39,8 +39,7 @@ export class AuthEffect {
       this.authService.register(data.payload)
         .pipe(
           map((res: UserEntity) => {
-            localStorage.setItem('token', res);
-            this.router.navigate(['login']);
+            this.router.navigate(['']);
             return new RegisterSuccessAction(res);
           }),
           catchError((err: Error) => of(new RegisterFailureAction(err)))
