@@ -15,13 +15,9 @@ export class AuthService {
   ) { }
 
   public authenticate(credentials: UserEntity): Observable<any> {
-    try {
       return this.http.post('https://serverless.wpadilla.vercel.app/api/auth/login',
         credentials
       );
-    } catch (err) {
-      console.log('error:', err);
-    }
   }
 
   public isAuthenticated(): boolean {
