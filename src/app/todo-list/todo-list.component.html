@@ -1,10 +1,10 @@
 <h2>All Todos</h2>
 <h4 *ngIf="loading | async">Loading...</h4>
 <ul>
-  <li *ngFor="let todo of todos | async" (click)="onTodoClick()">
+  <div *ngFor="let todo of todos | async" (click)="onTodoClick(todo)">
     {{todo.title}} &nbsp; &nbsp;
-    <b class="delete-todo" (click)="deleteTodo(todo)">X</b>
-  </li>
-  <span *ngIf="empty">Empty list</span>
+  </div>
+
+  <span *ngIf="empty && !loading">Empty list</span>
 </ul>
 

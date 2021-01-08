@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import AppState from '../store/models/app-state.model';
 import { Observable } from 'rxjs';
 import { LoadTodoListAction } from '../store/actions/todoList.actions';
-import { LoadTodoAction } from '../store/actions/todo.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
@@ -26,6 +26,7 @@ export class TodoListComponent implements OnInit {
 
   constructor(
     private store: Store,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class TodoListComponent implements OnInit {
   }
 
   onTodoClick(todo: TodoEntity): void {
-
+    this.router.navigate([`/todo/${todo._id}`]);
   }
 
   deleteTodo(todo: TodoEntity): void {

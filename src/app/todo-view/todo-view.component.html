@@ -1,6 +1,11 @@
-<b>Titulo:</b> &nbsp; <span>{{ todo.title }}</span>
-<b>Titulo:</b> &nbsp; <span>{{ todo.desc }}</span>
+<h3 *ngIf="loading | async">Loading...</h3>
+<b>Titulo:</b> &nbsp; <span>{{ todo && todo.title }}</span>
+<br>
+<br>
+<b>Description:</b> &nbsp; <span>{{ todo && todo.desc }}</span>
+<br>
 <br>
 <button>Edit</button>
+<br>
 <br>
 <button>Delete</button>
