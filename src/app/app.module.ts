@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { PublicGuardService } from './services/public-guard.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,12 @@ import { AuthGuardService } from './services/auth-guard.service';
       auth: authReducer,
     }),
   ],
-  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, AuthGuardService],
+  providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+    AuthGuardService,
+    PublicGuardService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
