@@ -20,9 +20,8 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login() {
+  login(): void {
     const payload = { email: this.email.value, password: this.password.value };
     this.store.dispatch(new LoginAction(payload));
   }
-
 }

@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/reducers/auth.reducer';
 import { AuthEffect } from './store/effects/auth.effect';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent
   ],
   imports: [
+    JwtModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -28,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
       auth: authReducer,
     }),
   ],
-  providers: [],
+  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
