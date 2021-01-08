@@ -17,7 +17,7 @@ export const authReducer = (state: AuthState = initialState, action: AuthActions
     case AuthActionsType.LOGIN_SUCCESS:
       return {
         ...state,
-        loading: true,
+        loading: false,
         user: action.payload,
       };
   }

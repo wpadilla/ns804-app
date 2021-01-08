@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   password: FormControl = new FormControl();
 
   constructor(
-    private store: Store<any>
+    private store: Store<any>,
   ) { }
 
   ngOnInit(): void {
@@ -24,4 +24,5 @@ export class LoginComponent implements OnInit {
     const payload = { email: this.email.value, password: this.password.value };
     this.store.dispatch(new LoginAction(payload));
   }
+
 }

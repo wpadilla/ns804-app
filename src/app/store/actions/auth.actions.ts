@@ -22,7 +22,7 @@ export class LoginAction implements ActionEntity {
 export class LoginSuccessAction implements ActionEntity {
   readonly type = AuthActionsType.LOGIN_SUCCESS;
 
-  constructor(public payload: UserEntity) {}
+  constructor(public payload?: UserEntity) {}
 
 }
 export class LoginFailureAction implements ActionEntity {
