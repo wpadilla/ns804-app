@@ -15,6 +15,7 @@ import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { PublicGuardService } from './services/public-guard.service';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { PublicGuardService } from './services/public-guard.service';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, }),
     EffectsModule.forRoot([AuthEffect]),
     StoreModule.forRoot({
       auth: authReducer,
