@@ -23,6 +23,7 @@ export class CreateTodoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.store.complete();
   }
 
   create() {
@@ -33,7 +34,7 @@ export class CreateTodoComponent implements OnInit {
     this.store.dispatch(new AddTodoAction(payload));
     this.createdTodo.subscribe(todo => {
       if (todo){
-        this.router.navigate([`/todo/${todo._id}`]);
+        this.router.navigate(['']);
       }
     });
   }

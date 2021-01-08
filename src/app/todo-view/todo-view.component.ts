@@ -34,7 +34,7 @@ export class TodoViewComponent implements OnInit {
             this.todo = todoItem;
             this.loading.subscribe(loadStatus => {
               if (!this.todo && !loadStatus) {
-                this.router.navigate(['']);
+                this.router.navigate(['/']);
               }
             });
 
@@ -46,10 +46,10 @@ export class TodoViewComponent implements OnInit {
 
   deleteTodo() {
     this.store.dispatch(new DeleteTodoAction(this.id));
-    this.loading.subscribe(loadStatus => {
-      if(!loadStatus) {
-        this.router.navigate(['']);
-      }
-    })
+    this.router.navigate(['/']);
+
+    // this.loading.subscribe(loadStatus => {
+    //
+    // })
   }
 }
