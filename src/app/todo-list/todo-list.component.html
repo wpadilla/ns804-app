@@ -5,6 +5,6 @@
     {{todo.title}} &nbsp; &nbsp;
   </div>
 
-  <span *ngIf="empty && !loading">Empty list</span>
+  <span *ngIf="empty && !(loading | async)">Empty list</span>
 </ul>
 

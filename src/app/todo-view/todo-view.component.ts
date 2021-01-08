@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 export class TodoViewComponent implements OnInit {
   todo: TodoEntity = {} as any;
   loading: Observable<boolean> = this.store.select((state: AppState) => state.todo && state.todo.loading);
-  id = this.route.snapshot.paramMap.get('id');
+  id: string = this.route.snapshot.paramMap.get('id');;
 
   constructor(
     private store: Store,
