@@ -24,6 +24,20 @@ export class AuthEffect {
     )
   );
 
+  register = createEffect(() => this.actions$.pipe(
+    ofType<LoginAction>(AuthActionsType.LOGIN),
+    exhaustMap((data: LoginAction) =>
+      this.loginService.authenticate(data.payload)
+        .pipe(
+          map((res: TokenEntity) => {
+            localStorage.setItem('token', res.token);
+            return new LoginSuccessAction(res);
+          }),
+          catchError(() => EMPTY)
+        ))
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private loginService: AuthService,

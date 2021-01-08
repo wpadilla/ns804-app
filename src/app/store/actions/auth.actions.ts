@@ -5,6 +5,9 @@ export enum AuthActionsType {
   LOGIN = '[LOGIN] Login Action',
   LOGIN_SUCCESS = '[LOGIN] Login Action Success',
   LOGIN_FAILURE = '[LOGIN] Login Action Failure',
+  REGISTER = '[REGISTER] Register Action',
+  REGISTER_SUCCESS = '[REGISTER] Register Action Success',
+  REGISTER_FAILURE = '[REGISTER] Register Action Failure',
 }
 
 export class LoginAction implements ActionEntity {
@@ -25,7 +28,29 @@ export class LoginFailureAction implements ActionEntity {
   constructor(public payload: Error) {}
 }
 
+export class RegisterAction implements ActionEntity {
+  readonly type = AuthActionsType.REGISTER;
+  constructor(public payload?: UserEntity) {}
+
+}
+
+export class RegisterSuccessAction implements ActionEntity {
+  readonly type = AuthActionsType.REGISTER_SUCCESS;
+
+  constructor(public payload?: UserEntity) {}
+
+}
+export class RegisterFailureAction implements ActionEntity {
+  readonly type = AuthActionsType.REGISTER_FAILURE;
+
+  constructor(public payload: Error) {}
+}
+
+
 export type AuthActions = LoginAction |
   LoginSuccessAction |
-  LoginFailureAction;
+  LoginFailureAction |
+  RegisterAction |
+  RegisterSuccessAction |
+  RegisterFailureAction;
 
