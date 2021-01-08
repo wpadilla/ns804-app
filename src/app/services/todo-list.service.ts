@@ -14,6 +14,11 @@ export class TodoListService {
   ) { }
 
   public loadTodos(): Observable<any> {
-      return this.http.get('http://localhost:3000/api/todo');
+    return this.http.get('http://localhost:3000/api/todos',
+      {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        }
+      });
   }
 }

@@ -19,6 +19,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoListService } from './services/todo-list.service';
 import { todoListReducer } from './store/reducers/todo-list.reducer';
+import { LoadTodoListEffect } from './store/effects/load-todo-list.effect';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { todoListReducer } from './store/reducers/todo-list.reducer';
     HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25, }),
-    EffectsModule.forRoot([AuthEffect]),
+    EffectsModule.forRoot([AuthEffect, LoadTodoListEffect]),
     StoreModule.forRoot({
       auth: authReducer,
       todoList: todoListReducer,

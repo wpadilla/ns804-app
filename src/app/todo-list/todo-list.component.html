@@ -1,7 +1,9 @@
-<h2>All Todos</h2>
+<h2>All Todos 2</h2>
+<h4 *ngIf="loading | async">Loading...</h4>
 <ul>
   <li *ngFor="let todo of myTodos | async" (click)="onTodoClick()">
     {{todo.title}} &nbsp; &nbsp;
-    <b>X</b>
+    <b class="delete-todo">X</b>
   </li>
 </ul>
+

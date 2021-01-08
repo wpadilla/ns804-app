@@ -2,9 +2,9 @@ import Action from '../models/action.model';
 import TodoEntity from '../models/todo.model';
 
 export enum TodoListActionTypes {
-  LOAD_TODO_LIST = '[TODO LIST] Load Action',
-  LOAD_TODO_LIST_SUCCESS = '[TODO LIST] Load Action Success',
-  LOAD_TODO_LIST_FAILURE = '[TODO LIST] Load Action Failure',
+  LOAD_TODO_LIST = '[TODO LIST] Load Todo List Action',
+  LOAD_TODO_LIST_SUCCESS = '[TODO LIST] Load Todo List Action Success',
+  LOAD_TODO_LIST_FAILURE = '[TODO LIST] Load Todo List Action Failure',
 }
 
 

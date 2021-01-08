@@ -1,7 +1,7 @@
 import { AuthState } from '../reducers/auth.reducer';
-import TodoEntity from './todo.model';
+import { TodoListState } from '../reducers/todo-list.reducer';
 
 export default interface AppState {
-  auth: AuthState,
-  todoList: TodoEntity[],
-};
+  auth: AuthState;
+  todoList: TodoListState;
+}
