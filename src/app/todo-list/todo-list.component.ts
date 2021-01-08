@@ -11,7 +11,16 @@ import { LoadTodoListAction } from '../store/actions/todoList.actions';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  myTodos: Observable<TodoEntity[]> = this.store.select((state: AppState) => state.todoList.data);
+  empty = false;
+  todos: Observable<TodoEntity[]> = this.store
+    .select((state: AppState) => state.todoList ? state.todoList.data : [])
+    .pipe((data: Observable<any>) => {
+      data.subscribe( res => {
+        this.empty = !res.length;
+      });
+      return data;
+    });
+
   loading: Observable<boolean> = this.store.select((state: AppState) => state.todoList.loading);
 
   constructor(
@@ -19,12 +28,14 @@ export class TodoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.loading, 'load');
     this.store.dispatch(new LoadTodoListAction());
-    this.myTodos.subscribe(item => console.log(item, 'items'));
   }
 
   onTodoClick(): void {
+
+  }
+
+  deleteTodo(todo: TodoEntity): void {
 
   }
 }
