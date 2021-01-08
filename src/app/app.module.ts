@@ -21,6 +21,7 @@ import { TodoListService } from './services/todo-list.service';
 import { todoListReducer } from './store/reducers/todo-list.reducer';
 import { LoadTodoListEffect } from './store/effects/load-todo-list.effect';
 import { TodoViewComponent } from './todo-view/todo-view.component';
+import { TodoService } from './services/todo.service';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { TodoViewComponent } from './todo-view/todo-view.component';
     JwtHelperService,
     AuthGuardService,
     PublicGuardService,
-    TodoListService
+    TodoListService,
+    TodoService,
   ],
   bootstrap: [AppComponent]
 })

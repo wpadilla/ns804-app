@@ -5,6 +5,7 @@ import { map, catchError, mergeMap } from 'rxjs/operators';
 import { TodoListService } from '../../services/todo-list.service';
 import TodoEntity from '../models/todo.model';
 import { TodoAction, TodoFailureAction, TodoSuccessAction, TodoListActionTypes } from '../actions/todoList.actions';
+import { TodoService } from '../../services/todo.service';
 
 
 @Injectable()
@@ -26,6 +27,6 @@ export class TodoEffect {
 
   constructor(
     private actions$: Actions,
-    private todoListService: TodoListService,
+    private todoListService: TodoService,
   ) {}
 }
