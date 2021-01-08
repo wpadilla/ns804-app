@@ -1,4 +1,4 @@
-import Action from '../models/action.model';
+import ActionEntity from '../models/action.model';
 import UserEntity from '../models/user.model';
 import { createAction, props } from '@ngrx/store';
 
@@ -10,15 +10,17 @@ export enum AuthActionsType {
 
 export const loginAction = createAction(
   AuthActionsType.LOGIN,
-  props<{credentials: UserEntity}>(),
+  props<UserEntity>(),
 );
 
-export const loginSuccessAction = createAction(
-  AuthActionsType.LOGIN_SUCCESS,
-  props<{credentials: UserEntity}>(),
-);
+export class LoginSuccessAction implements ActionEntity {
+  readonly type = AuthActionsType.LOGIN_SUCCESS;
 
-export const LoginFailureAction = createAction(
-  AuthActionsType.LOGIN_FAILURE,
-  props<Error>(),
-);
+  constructor(public payload: UserEntity) {}
+
+}
+export class LoginFailureAction implements ActionEntity {
+  readonly type = AuthActionsType.LOGIN_FAILURE;
+
+  constructor(public payload: Error) {}
+}
