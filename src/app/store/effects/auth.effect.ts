@@ -4,8 +4,7 @@ import { EMPTY } from 'rxjs';
 import { map, catchError, exhaustMap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { AuthActionsType, LoginAction, LoginSuccessAction } from '../actions/auth.actions';
-import UserEntity from '../models/user.model';
-import { Store } from '@ngrx/store';
+import { TokenEntity } from '../models/user.model';
 
 
 @Injectable()
@@ -16,7 +15,10 @@ export class AuthEffect {
     exhaustMap((data: LoginAction) =>
       this.loginService.authenticate(data.payload)
       .pipe(
-        map((credentials: UserEntity) => (new LoginSuccessAction(credentials))),
+        map((res: TokenEntity) => {
+          localStorage.setItem('token', res.token);
+          return new LoginSuccessAction(res);
+        }),
         catchError(() => EMPTY)
       ))
     )
@@ -25,6 +27,5 @@ export class AuthEffect {
   constructor(
     private actions$: Actions,
     private loginService: AuthService,
-    private store: Store,
   ) {}
 }

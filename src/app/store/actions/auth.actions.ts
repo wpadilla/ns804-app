@@ -1,5 +1,5 @@
 import ActionEntity from '../models/action.model';
-import UserEntity from '../models/user.model';
+import UserEntity, { TokenEntity } from '../models/user.model';
 import { createAction, props } from '@ngrx/store';
 
 export enum AuthActionsType {
@@ -22,7 +22,7 @@ export class LoginAction implements ActionEntity {
 export class LoginSuccessAction implements ActionEntity {
   readonly type = AuthActionsType.LOGIN_SUCCESS;
 
-  constructor(public payload?: UserEntity) {}
+  constructor(public payload?: TokenEntity) {}
 
 }
 export class LoginFailureAction implements ActionEntity {

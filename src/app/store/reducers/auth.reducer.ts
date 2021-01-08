@@ -2,10 +2,10 @@ import UserEntity from '../models/user.model';
 import { AuthActions, AuthActionsType } from '../actions/auth.actions';
 
 export interface AuthState {
-  user?: UserEntity,
+  token?: string,
 }
 
-const initialState: AuthState = { user: undefined };
+const initialState: AuthState = { token: undefined };
 
 export const authReducer = (state: AuthState = initialState, action: AuthActions) => {
   switch (action.type) {
@@ -18,7 +18,7 @@ export const authReducer = (state: AuthState = initialState, action: AuthActions
       return {
         ...state,
         loading: false,
-        user: action.payload,
+        token: action.payload.token,
       };
   }
 };
