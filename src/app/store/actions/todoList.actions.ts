@@ -10,6 +10,7 @@ export enum TodoListActionTypes {
 
 export class LoadTodoListAction implements Action {
   readonly type = TodoListActionTypes.LOAD_TODO_LIST;
+
 }
 export class LoadTodoListSuccessAction implements Action {
   readonly type = TodoListActionTypes.LOAD_TODO_LIST_SUCCESS;
@@ -22,3 +23,8 @@ export class LoadTodoListFailureAction implements Action {
 
   constructor(public payload: Error) {}
 }
+
+export type TodoListActions =
+  LoadTodoListAction |
+  LoadTodoListSuccessAction |
+  LoadTodoListFailureAction;

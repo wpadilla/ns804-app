@@ -17,6 +17,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { PublicGuardService } from './services/public-guard.service';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoListService } from './services/todo-list.service';
+import { todoListReducer } from './store/reducers/todo-list.reducer';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     EffectsModule.forRoot([AuthEffect]),
     StoreModule.forRoot({
       auth: authReducer,
+      todoList: todoListReducer,
     }),
   ],
   providers: [
@@ -44,6 +47,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     JwtHelperService,
     AuthGuardService,
     PublicGuardService,
+    TodoListService
   ],
   bootstrap: [AppComponent]
 })
