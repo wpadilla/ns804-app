@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, catchError, exhaustMap } from 'rxjs/operators';
 import { LoginService } from '../../services/auth/login.service';
-import { loginAction, LoginSuccessAction } from '../actions/auth.actions';
+import { AuthActionsType, LoginAction, LoginSuccessAction } from '../actions/auth.actions';
 import UserEntity from '../models/user.model';
 
 
@@ -11,8 +11,8 @@ import UserEntity from '../models/user.model';
 export class AuthEffect {
 
   authenticate = createEffect(() => this.actions$.pipe(
-    ofType(loginAction),
-    exhaustMap((data) =>
+    ofType<LoginAction>(AuthActionsType.LOGIN),
+    exhaustMap((data: any) =>
       this.loginService.authenticate(data)
       .pipe(
         map((credentials: UserEntity) => (new LoginSuccessAction(credentials))),

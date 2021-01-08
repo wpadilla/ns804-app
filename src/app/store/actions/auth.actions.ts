@@ -13,6 +13,10 @@ export const loginAction = createAction(
   props<UserEntity>(),
 );
 
+export class LoginAction implements ActionEntity {
+  readonly type = AuthActionsType.LOGIN;
+}
+
 export class LoginSuccessAction implements ActionEntity {
   readonly type = AuthActionsType.LOGIN_SUCCESS;
 
@@ -24,3 +28,8 @@ export class LoginFailureAction implements ActionEntity {
 
   constructor(public payload: Error) {}
 }
+
+export type AuthActions =
+  LoginSuccessAction |
+  LoginFailureAction;
+
