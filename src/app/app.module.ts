@@ -16,13 +16,15 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { PublicGuardService } from './services/public-guard.service';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    TodoListComponent
   ],
   imports: [
     JwtModule,
