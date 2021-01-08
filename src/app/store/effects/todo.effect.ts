@@ -11,7 +11,7 @@ import {
   LoadTodoAction,
   LoadTodoFailureAction,
   LoadTodoSuccessAction,
-  TodoActionsTypes
+  TodoActionsTypes, UpdateTodoAction, UpdateTodoFailureAction, UpdateTodoSuccessAction
 } from '../actions/todo.actions';
 
 
@@ -41,6 +41,20 @@ export class TodoEffect {
             return new DeleteTodoSuccessAction(res.data);
           }),
           catchError((err: Error) => of(new DeleteTodoFailureAction(err)))
+        )}
+    )
+    )
+  );
+
+  updateTodo = createEffect(() => this.actions$.pipe(
+    ofType<UpdateTodoAction>(TodoActionsTypes.UPDATE_TODO),
+    mergeMap((data: UpdateTodoAction) => {
+      return this.todoService.updateTodo(data.payload)
+        .pipe(
+          map((res: { data: TodoEntity }) => {
+            return new UpdateTodoSuccessAction(res.data);
+          }),
+          catchError((err: Error) => of(new UpdateTodoFailureAction(err)))
         )}
     )
     )
