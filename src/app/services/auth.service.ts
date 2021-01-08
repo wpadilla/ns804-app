@@ -20,7 +20,7 @@ export class AuthService {
         credentials
       );
     } catch (err) {
-      console.log(err, 'errr');
+      console.log('error:', err);
     }
   }
 

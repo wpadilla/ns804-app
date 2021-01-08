@@ -1,17 +1,11 @@
 import ActionEntity from '../models/action.model';
 import UserEntity, { TokenEntity } from '../models/user.model';
-import { createAction, props } from '@ngrx/store';
 
 export enum AuthActionsType {
   LOGIN = '[LOGIN] Login Action',
   LOGIN_SUCCESS = '[LOGIN] Login Action Success',
   LOGIN_FAILURE = '[LOGIN] Login Action Failure',
 }
-
-export const loginAction = createAction(
-  AuthActionsType.LOGIN,
-  props<UserEntity>(),
-);
 
 export class LoginAction implements ActionEntity {
   readonly type = AuthActionsType.LOGIN;
