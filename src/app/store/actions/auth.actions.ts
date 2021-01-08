@@ -15,6 +15,8 @@ export const loginAction = createAction(
 
 export class LoginAction implements ActionEntity {
   readonly type = AuthActionsType.LOGIN;
+  constructor(public payload?: UserEntity) {}
+
 }
 
 export class LoginSuccessAction implements ActionEntity {

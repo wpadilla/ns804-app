@@ -12,8 +12,8 @@ export class AuthEffect {
 
   authenticate = createEffect(() => this.actions$.pipe(
     ofType<LoginAction>(AuthActionsType.LOGIN),
-    exhaustMap((data: any) =>
-      this.loginService.authenticate(data)
+    exhaustMap((data: LoginAction) =>
+      this.loginService.authenticate(data.payload)
       .pipe(
         map((credentials: UserEntity) => (new LoginSuccessAction(credentials))),
         catchError(() => EMPTY)

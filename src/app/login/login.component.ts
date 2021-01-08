@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { LoginAction } from '../store/actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +13,7 @@ export class LoginComponent implements OnInit {
   password: FormControl = new FormControl();
 
   constructor(
+    private store: Store<any>
   ) { }
 
   ngOnInit(): void {
@@ -18,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    // code to log in
+    const payload = { email: this.email.value, password: this.password.value };
+    this.store.dispatch(new LoginAction(payload));
   }
-
 }

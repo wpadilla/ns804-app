@@ -11,7 +11,7 @@ export class LoginService {
 
   public authenticate(credentials: UserEntity) {
     return this.http.post('https://serverless.wpadilla.vercel.app/api/auth/login',
-      JSON.stringify(credentials)
+      credentials
     );
   }
 }
