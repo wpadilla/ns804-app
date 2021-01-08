@@ -1,1 +1,7 @@
-<p>todo-list works!</p>
+<h2>All Todos</h2>
+<ul>
+  <li *ngFor="let todo of myTodos | async" (click)="onTodoClick()">
+    {{todo.title}} &nbsp; &nbsp;
+    <b>X</b>
+  </li>
+</ul>
