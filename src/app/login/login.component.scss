@@ -21,6 +21,18 @@
   flex-direction: column;
   width: 550px;
   max-width: 100%;
+  position: relative;
+}
 
+.user-plus-icon {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  button {
+    border-radius: 50%;
+    display: flex;
+    padding: 25px;
+    cursor: pointer;
+  }
 }
 

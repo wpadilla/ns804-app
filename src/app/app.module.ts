@@ -26,7 +26,7 @@ import { TodoEffect } from './store/effects/todo.effect';
 import { todoReducer } from './store/reducers/todo.reducer';
 import TokenService from './services/token.service';
 import { CreateTodoComponent } from './create-todo/create-todo.component';
-
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 @NgModule({
   declarations: [
@@ -52,6 +52,7 @@ import { CreateTodoComponent } from './create-todo/create-todo.component';
       todoList: todoListReducer,
       todo: todoReducer,
     }),
+    TooltipModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

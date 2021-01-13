@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="left-side-container">
     <h3 *ngIf="loading | async">Loading...</h3>
     <div class="form-container">
@@ -22,8 +21,10 @@
     <span class="error-msg">{{ (loginErr | async) && (loginErr | async).message }}</span>
     <br>
     <br>
-    <div>
-      <button  [disabled]="loading | async" class="btn">Go to Register</button>
+    <div class="user-plus-icon">
+      <button  tooltip="Register User" (click)="goToRegister()" [disabled]="loading | async" class="btn">
+        <img src="/assets/icons/user-plus-solid.svg" />
+      </button>
     </div>
   </div>
   <div class="right-side-container"></div>
