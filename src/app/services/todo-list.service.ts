@@ -17,7 +17,7 @@ export class TodoListService extends TokenService {
   }
 
   public loadTodos(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/todos',
+    return this.http.get('https://serverless.wpadilla.vercel.app/api/todos',
       {
         headers: {
           Authorization: this.token,

@@ -18,7 +18,7 @@ export class TodoService extends TokenService{
   }
 
   public loadTodo(_id: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/api/todos/${_id}`,
+    return this.http.get(`https://serverless.wpadilla.vercel.app/api/todos/${_id}`,
       {
         headers: {
           Authorization: this.token,
@@ -27,7 +27,7 @@ export class TodoService extends TokenService{
   }
 
   public deleteTodo(_id: string): Observable<any> {
-    return this.http.delete(`http://localhost:3000/api/todos/${_id}`,
+    return this.http.delete(`https://serverless.wpadilla.vercel.app/api/todos/${_id}`,
       {
         headers: {
           Authorization: this.token,
@@ -36,7 +36,7 @@ export class TodoService extends TokenService{
   }
 
   public updateTodo(todo: { id: string, data: Omit<TodoEntity, '_id'> }): Observable<any> {
-    return this.http.put(`http://localhost:3000/api/todos/${todo.id}`,
+    return this.http.put(`https://serverless.wpadilla.vercel.app/api/todos/${todo.id}`,
       todo.data,
       {
         headers: {
@@ -46,7 +46,7 @@ export class TodoService extends TokenService{
   }
 
   public addTodo(todo: Omit<TodoEntity, '_id'>): Observable<any> {
-    return this.http.post(`http://localhost:3000/api/todos/`, todo,
+    return this.http.post(`https://serverless.wpadilla.vercel.app/api/todos/`, todo,
       {
         headers: {
           Authorization: this.token,

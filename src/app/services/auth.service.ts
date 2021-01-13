@@ -15,13 +15,13 @@ export class AuthService {
   ) { }
 
   public authenticate(credentials: UserEntity): Observable<any> {
-      return this.http.post('http://localhost:3000/api/auth/login',
+      return this.http.post('https://serverless.wpadilla.vercel.app/api/auth/login',
         credentials
       );
   }
 
   public register(credentials: UserEntity): Observable<any> {
-    return this.http.post('http://localhost:3000/api/auth/register',
+    return this.http.post('https://serverless.wpadilla.vercel.app/api/auth/register',
       credentials
     );
   }
