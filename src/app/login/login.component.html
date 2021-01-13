@@ -1,27 +1,32 @@
-<div class="left-side-container">
-  <h3 *ngIf="loading | async">Loading...</h3>
-  <div class="form-container">
-    <div class="form-control mb-2">
-      <input
-        type="text"
-        [formControl]="email"
-        placeholder="email" >
+<div class="container">
+
+  <div class="left-side-container">
+    <h3 *ngIf="loading | async">Loading...</h3>
+    <div class="form-container">
+      <div class="form-control mb-2">
+        <input
+          type="text"
+          [formControl]="email"
+          placeholder="email" >
+      </div>
+      <div class="form-control">
+        <input
+          type="password"
+          [formControl]="password"
+          placeholder="password" >
+      </div>
+    <div>
+      <button class="btn btn-primary" (click)="login()" [disabled]="loading | async">Login</button>
     </div>
-    <div class="form-control">
-      <input
-        type="password"
-        [formControl]="password"
-        placeholder="password" >
     </div>
-  <div>
-    <button class="btn btn-primary" (click)="login()" [disabled]="loading | async">Login</button>
+    <span class="error-msg">{{ (loginErr | async) && (loginErr | async).message }}</span>
+    <br>
+    <br>
+    <div>
+      <button  [disabled]="loading | async" class="btn">Go to Register</button>
+    </div>
   </div>
-  </div>
-  <span class="error-msg">{{ (loginErr | async) && (loginErr | async).message }}</span>
-  <br>
-  <br>
-  <div>
-    <button (click)="goToRegister()" [disabled]="loading | async">Go to Register</button>
-  </div>
+  <div class="right-side-container"></div>
+
 </div>
-<div class="right-side-container"></div>
+
