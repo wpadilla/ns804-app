@@ -14,10 +14,18 @@ $display: (
   '-none': none
 );
 
+$direction: (
+  '-c': column,
+  '-cr': column-reverse,
+  '-r': row,
+  '-rr': row-reverse,
+);
+
 @mixin getFlexbox() {
   $all: (
     'justify-content': $aligning,
     'align-items': $aligning,
+    'flex-direction': $direction,
     'display': $display,
   );
 
