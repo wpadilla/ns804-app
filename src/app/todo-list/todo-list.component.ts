@@ -30,6 +30,7 @@ export class TodoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('hola')
     this.store.dispatch(new LoadTodoListAction());
   }
 

@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit  {
         this.startLoading = false;
       }
       if (auth.err === undefined) {
-        this.router.navigate(['/']);
+        location.href = '/'
       }
     });
 
