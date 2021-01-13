@@ -3,11 +3,31 @@
   width: 100%;
 }
 
-@function calculateRem($size) {
-  $remSize: $size / 16px;
-  @return $remSize * 1rem;
+$max: 1;
+$offset: 10;
+$unit: 'rem';
+
+@mixin list-loop($className, $styleName) {
+  $i: 0;
+  @while $i <= $max {
+    #{$className + $i} {
+      #{$styleName}: #{$i + $unit};
+    }
+    $i: $i + $offset;
+  }
 }
 
-@mixin font-rem-size($size) {
-  font-size: calculateRem($size);
-}
+// padding classes
+@include list-loop('.pl-', 'padding-left');
+@include list-loop('.pr-', 'padding-right');
+@include list-loop('.pb-', 'padding-bottom');
+@include list-loop('.pt-', 'padding-top');
+
+// margin classes
+@include list-loop('.ml-', 'margin-left');
+@include list-loop('.mr-', 'margin-right');
+@include list-loop('.mb-', 'margin-bottom');
+@include list-loop('.mt-', 'margin-top');
+
+// font size classes
+@include list-loop('.fs-', 'font-size');
