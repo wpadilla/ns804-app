@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { LoginAction } from '../store/actions/auth.actions';
 import AppState from '../store/models/app-state.model';
 import { Router } from '@angular/router';
-import { TodoListService } from '../services/todo-list.service';
 import { Observable } from 'rxjs';
+import { AuthState } from '../store/reducers/auth.reducer';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +15,8 @@ import { Observable } from 'rxjs';
 export class LoginComponent implements OnInit {
   email: FormControl = new FormControl();
   password: FormControl = new FormControl();
-  loading: Observable<boolean> = this.store.select((state: AppState) => state.auth && state.auth.loading);
-  loginErr: Observable<Error> = this.store.select((state: AppState) => state.auth && state.auth.err);
+  auth: Observable<AuthState> = this.store.select((state: AppState) => state.auth || {});
+  // loginErr: Observable<Error> = this.store.select((state: AppState) => state.auth && state.auth.err);
 
 
   constructor(
@@ -33,13 +33,17 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(new LoginAction(payload));
     this.email.disable();
     this.password.disable();
-    this.loading.subscribe(loadState => {
-      if(!loadState) {
+    this.auth.subscribe(auth => {
+      if(!auth.loading) {
         this.email.enable();
         this.password.enable();
-        location.href = '';
+      }
+      if (auth.err === undefined) {
+        console.log(auth.err);
+        location.href = '/';
       }
     });
+
   }
 
   goToRegister(): void {

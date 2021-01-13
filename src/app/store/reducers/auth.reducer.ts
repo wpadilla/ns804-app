@@ -8,7 +8,12 @@ export interface AuthState {
   loading?: boolean;
 }
 
-const initialState: AuthState = { token: undefined };
+const initialState: AuthState = {
+  token: undefined,
+  err: false,
+  user: undefined,
+  loading: false,
+};
 
 export const authReducer = (state: AuthState = initialState, action: AuthActions) => {
   switch (action.type) {
