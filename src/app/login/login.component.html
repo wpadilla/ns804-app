@@ -14,7 +14,7 @@
         placeholder="password" >
     </div>
   <div>
-    <button (click)="login()" [disabled]="loading | async">Login</button>
+    <button class="btn btn-primary" (click)="login()" [disabled]="loading | async">Login</button>
   </div>
   </div>
   <span class="error-msg">{{ (loginErr | async) && (loginErr | async).message }}</span>

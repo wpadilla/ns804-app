@@ -1,26 +1,10 @@
-@import "~src/assets/styles/colors.scss";
 
 
 ::ng-deep {
+  @import "~src/assets/styles/forms.scss";
 
   * {
     margin: 0;
-  }
-  // form control styles
-  .form-control {
-    padding: 0 10px;
-    input {
-      border: 1px solid $primary;
-      box-shadow: 0 0 5px $primary;
-      border-radius: 3px;
-      font-size: 18px;
-      padding: 10px;
-
-      &:active {
-        box-shadow: 0 0 5px $primary-dark;
-        outline: unset;
-      }
-    }
   }
 
   $max: 10;
