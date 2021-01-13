@@ -2,7 +2,9 @@
 .error-msg {
   color: red;
 }
-
+.container {
+  position: relative;
+}
 .right-side-container {
   background-image: url("~src/assets/images/background-login.jpeg");
   background-size: cover;

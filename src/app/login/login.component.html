@@ -1,5 +1,5 @@
-<app-loading ></app-loading>
-<div class="container">
+<app-loading *ngIf="(auth | async).loading"></app-loading>
+<div class="container" [@startLoading]="(startLoading) ? 'loading' : 'loaded'">
   <div class="left-side-container">
     <div class="form-container">
       <div class="display-flex justify-content-c align-items-c flex-direction-c">

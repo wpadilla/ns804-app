@@ -28,6 +28,7 @@ import TokenService from './services/token.service';
 import { CreateTodoComponent } from './create-todo/create-todo.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { LoadingComponent } from './loading/loading.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import { LoadingComponent } from './loading/loading.component';
     LoadingComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     JwtModule,
     BrowserModule,
     AppRoutingModule,
