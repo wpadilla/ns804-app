@@ -1,0 +1,33 @@
+$aligning: (
+  '-sa': space-around,
+  '-sb': space-between,
+  '-se': space-evenly,
+  '-c': center,
+  '-fs': flex-start,
+  '-fe': flex-end
+);
+
+$display: (
+  '-flex': flex,
+  '-block': block,
+  '-inline-block': inline-block,
+  '-none': none
+);
+
+@mixin getFlexbox() {
+  $all: (
+    'justify-content': $aligning,
+    'align-items': $aligning,
+    'display': $display,
+  );
+
+  @each $key, $value in $all {
+    @each $k, $v in $value {
+      .#{$key + $k } {
+        #{$key}: #{$v};
+      }
+    }
+  }
+}
+
+@include getFlexbox();

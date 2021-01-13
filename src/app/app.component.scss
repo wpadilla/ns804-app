@@ -1,40 +1,14 @@
 
-
 ::ng-deep {
   @import "~src/assets/styles/forms.scss";
+  @import "~src/assets/styles/flexbox.scss";
+  @import "~src/assets/styles/spacing.scss";
+  // font size classes
+  @include list-loop('.fs-', 'font-size');
 
   * {
     margin: 0;
   }
-
-  $max: 10;
-  $offset: 1;
-  $unit: 'rem';
-
-  @mixin list-loop($className, $styleName) {
-    $i: 0;
-    @while $i <= $max {
-      #{$className + $i} {
-        #{$styleName}: #{$i + $unit};
-      }
-      $i: $i + $offset;
-    }
-  }
-
-  // padding classes
-  @include list-loop('.pl-', 'padding-left');
-  @include list-loop('.pr-', 'padding-right');
-  @include list-loop('.pb-', 'padding-bottom');
-  @include list-loop('.pt-', 'padding-top');
-
-  // margin classes
-  @include list-loop('.ml-', 'margin-left');
-  @include list-loop('.mr-', 'margin-right');
-  @include list-loop('.mb-', 'margin-bottom');
-  @include list-loop('.mt-', 'margin-top');
-
-  // font size classes
-  @include list-loop('.fs-', 'font-size');
 
 }
 .log-out {
