@@ -16,7 +16,6 @@ export class LoadTodoListEffect {
       return this.todoListService.loadTodos()
       .pipe(
         map((res: { data: TodoEntity[] }) => {
-          console.log('executed', data);
           return new LoadTodoListSuccessAction(res.data);
         }),
         catchError((err: Error) => of(new LoadTodoListFailureAction(err)))
