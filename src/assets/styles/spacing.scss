@@ -25,3 +25,6 @@ $unit: 'rem';
 @include list-loop('.mb-', 'margin-bottom');
 @include list-loop('.mt-', 'margin-top');
 
+// width
+@include list-loop('.w-', 'width');
+
