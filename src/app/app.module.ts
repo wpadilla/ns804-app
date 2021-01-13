@@ -27,6 +27,7 @@ import { todoReducer } from './store/reducers/todo.reducer';
 import TokenService from './services/token.service';
 import { CreateTodoComponent } from './create-todo/create-todo.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     HomeComponent,
     TodoListComponent,
     TodoViewComponent,
-    CreateTodoComponent
+    CreateTodoComponent,
+    LoadingComponent
   ],
   imports: [
     JwtModule,
