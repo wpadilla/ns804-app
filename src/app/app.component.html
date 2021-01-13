@@ -1,4 +1,6 @@
-<div  class="log-out">
-  <a href="#" *ngIf="tokenAvailable" (click)="logOut()" >Log Out</a>
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <div  class="log-out">
+    <a href="#" *ngIf="tokenAvailable" (click)="logOut()" >Log Out</a>
+  </div>
+  <router-outlet #outlet="outlet"></router-outlet>
 </div>
-<router-outlet></router-outlet>
