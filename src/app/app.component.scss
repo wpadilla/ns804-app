@@ -1,33 +1,57 @@
+@import "~src/assets/styles/colors.scss";
+
+
+::ng-deep {
+  // form control styles
+  .form-control {
+    padding: 0 10px;
+
+    input {
+      border: 1px solid $primary;
+      box-shadow: 0 0 5px $primary;
+      border-radius: 3px;
+      font-size: 18px;
+      padding: 10px;
+
+      &:active {
+        box-shadow: 0 0 5px $primary-dark;
+      }
+    }
+  }
+
+  $max: 10;
+  $offset: 1;
+  $unit: 'rem';
+
+  @mixin list-loop($className, $styleName) {
+    $i: 0;
+    @while $i <= $max {
+      #{$className + $i} {
+        #{$styleName}: #{$i + $unit};
+      }
+      $i: $i + $offset;
+    }
+  }
+
+  // padding classes
+  @include list-loop('.pl-', 'padding-left');
+  @include list-loop('.pr-', 'padding-right');
+  @include list-loop('.pb-', 'padding-bottom');
+  @include list-loop('.pt-', 'padding-top');
+
+  // margin classes
+  @include list-loop('.ml-', 'margin-left');
+  @include list-loop('.mr-', 'margin-right');
+  @include list-loop('.mb-', 'margin-bottom');
+  @include list-loop('.mt-', 'margin-top');
+
+  // font size classes
+  @include list-loop('.fs-', 'font-size');
+}
 .log-out {
   text-align: center;
   width: 100%;
 }
 
-$max: 1;
-$offset: 10;
-$unit: 'rem';
 
-@mixin list-loop($className, $styleName) {
-  $i: 0;
-  @while $i <= $max {
-    #{$className + $i} {
-      #{$styleName}: #{$i + $unit};
-    }
-    $i: $i + $offset;
-  }
-}
 
-// padding classes
-@include list-loop('.pl-', 'padding-left');
-@include list-loop('.pr-', 'padding-right');
-@include list-loop('.pb-', 'padding-bottom');
-@include list-loop('.pt-', 'padding-top');
-
-// margin classes
-@include list-loop('.ml-', 'margin-left');
-@include list-loop('.mr-', 'margin-right');
-@include list-loop('.mb-', 'margin-bottom');
-@include list-loop('.mt-', 'margin-top');
-
-// font size classes
-@include list-loop('.fs-', 'font-size');

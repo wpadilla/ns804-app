@@ -1,14 +1,18 @@
-<div>
+<div class="left-side-container">
   <h3 *ngIf="loading | async">Loading...</h3>
   <div class="form-container">
-    <input
+    <div class="form-control mt-2">
+      <input
         type="text"
-       [formControl]="email"
-       placeholder="email" >
-    <input
+        [formControl]="email"
+        placeholder="email" >
+    </div>
+    <div class="form-control">
+      <input
         type="password"
-       [formControl]="password"
-       placeholder="password" >
+        [formControl]="password"
+        placeholder="password" >
+    </div>
   <div>
     <button (click)="login()" [disabled]="loading | async">Login</button>
   </div>
@@ -20,4 +24,4 @@
     <button (click)="goToRegister()" [disabled]="loading | async">Go to Register</button>
   </div>
 </div>
-<div class="right-side-bg-image"></div>
+<div class="right-side-container"></div>
