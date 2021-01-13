@@ -2,10 +2,13 @@
 
 
 ::ng-deep {
+
+  * {
+    margin: 0;
+  }
   // form control styles
   .form-control {
     padding: 0 10px;
-
     input {
       border: 1px solid $primary;
       box-shadow: 0 0 5px $primary;
@@ -15,6 +18,7 @@
 
       &:active {
         box-shadow: 0 0 5px $primary-dark;
+        outline: unset;
       }
     }
   }
@@ -47,6 +51,7 @@
 
   // font size classes
   @include list-loop('.fs-', 'font-size');
+
 }
 .log-out {
   text-align: center;
