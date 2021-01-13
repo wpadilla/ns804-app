@@ -16,8 +16,6 @@ export class LoginComponent implements OnInit {
   email: FormControl = new FormControl();
   password: FormControl = new FormControl();
   auth: Observable<AuthState> = this.store.select((state: AppState) => state.auth || {});
-  // loginErr: Observable<Error> = this.store.select((state: AppState) => state.auth && state.auth.err);
-
 
   constructor(
     private store: Store<AppState>,
