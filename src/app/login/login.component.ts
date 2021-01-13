@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { LoginAction } from '../store/actions/auth.actions';
@@ -27,19 +27,48 @@ import {
         left: '-550px',
       })),
       transition('loaded => loading', [
-        animate('.500s .1s ease-out')
+        animate('.3s .1s ease-out')
       ]),
       transition('loading => loaded', [
-        animate('.300s .1s ease-in')
+        animate('.3s .1s ease-in')
+      ]),
+    ]),
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('.5s', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('.5s', style({ opacity: 0 })),
+      ]),
+    ]),
+    trigger('popIn', [
+      transition(':enter', [
+        style({ transform: 'scale(0)' }),
+        animate('.3s', style({ transform: 'scale(1)' })),
+      ]),
+      transition(':leave', [
+        animate('.3s', style({ transform: 'scale(0)' })),
+      ]),
+    ]),
+    trigger('horizonTalSlide', [
+      transition(':enter', [
+        style({ transform: 'translateX(1000px)' }),
+        animate('.7s', style({ transform: 'translateX(0)' })),
+      ]),
+      transition(':leave', [
+        animate('.7s', style({ transform: 'translateX(0)' })),
       ]),
     ]),
   ],
 })
-export class LoginComponent implements OnInit {
+
+export class LoginComponent implements OnInit, AfterViewInit {
   email: FormControl = new FormControl();
   password: FormControl = new FormControl();
   auth: Observable<AuthState> = this.store.select((state: AppState) => state.auth || {});
   startLoading: boolean;
+  fadeIn: boolean;
 
   constructor(
     private store: Store<AppState>,
@@ -47,7 +76,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    setTimeout( () => this.fadeIn = true);
   }
 
   login(): void {
@@ -61,11 +90,9 @@ export class LoginComponent implements OnInit {
         this.email.enable();
         this.password.enable();
         this.startLoading = false;
-
       }
       if (auth.err === undefined) {
-        console.log(auth.err);
-        location.href = '/';
+        this.router.navigate(['/']);
       }
     });
 

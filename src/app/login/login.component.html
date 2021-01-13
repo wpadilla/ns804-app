@@ -1,7 +1,7 @@
 <app-loading *ngIf="(auth | async).loading"></app-loading>
 <div class="container" [@startLoading]="(startLoading) ? 'loading' : 'loaded'">
   <div class="left-side-container">
-    <div class="form-container">
+    <div class="form-container" @fadeIn>
       <div class="display-flex justify-content-c align-items-c flex-direction-c">
         <img src="/assets/images/logo.png" class="w-5" alt="App Logo">
         <h1 class="mb-1">Todo App</h1>
@@ -29,12 +29,12 @@
       </button>
     </div>
     </div>
-    <div class="user-plus-icon">
+    <div class="user-plus-icon" @popIn>
       <button  tooltip="Register User" (click)="goToRegister()" [disabled]="(auth | async).loading" class="btn">
         <img src="/assets/icons/user-plus-solid.svg" />
       </button>
     </div>
   </div>
-  <div class="right-side-container"></div>
+  <div class="right-side-container" @horizonTalSlide></div>
 </div>
 
