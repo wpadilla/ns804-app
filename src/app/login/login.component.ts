@@ -13,6 +13,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { fadeInAnimation, horizontalSlideAnimation, popInAnimation } from '../../utils/animations';
 
 @Component({
   selector: 'app-login',
@@ -33,37 +34,13 @@ import {
         animate('.3s .1s ease-in')
       ]),
     ]),
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('.5s', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        animate('.5s', style({ opacity: 0 })),
-      ]),
-    ]),
-    trigger('popIn', [
-      transition(':enter', [
-        style({ transform: 'scale(0)' }),
-        animate('.3s', style({ transform: 'scale(1)' })),
-      ]),
-      transition(':leave', [
-        animate('.3s', style({ transform: 'scale(0)' })),
-      ]),
-    ]),
-    trigger('horizonTalSlide', [
-      transition(':enter', [
-        style({ transform: 'translateX(1000px)' }),
-        animate('.7s', style({ transform: 'translateX(0)' })),
-      ]),
-      transition(':leave', [
-        animate('.7s', style({ transform: 'translateX(0)' })),
-      ]),
-    ]),
+    fadeInAnimation,
+    popInAnimation,
+    horizontalSlideAnimation,
   ],
 })
 
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit  {
   email: FormControl = new FormControl();
   password: FormControl = new FormControl();
   auth: Observable<AuthState> = this.store.select((state: AppState) => state.auth || {});

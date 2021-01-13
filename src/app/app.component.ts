@@ -7,10 +7,16 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   title = 'app';
-  constructor() {}
-  tokenAvailable: boolean = !!localStorage.getItem('token');
+  constructor(private router: Router) {}
+  tokenAvailable: boolean;
+  ngOnInit(): void {
+    this.router.events.subscribe(e => {
+      this.tokenAvailable = !!localStorage.getItem('token');
+    });
+  }
 
   logOut(): void {
     localStorage.removeItem('token');

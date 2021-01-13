@@ -3,7 +3,7 @@ import { AuthActions, AuthActionsType } from '../actions/auth.actions';
 
 export interface AuthState {
   token?: string;
-  err?: Error;
+  err?: Error | any;
   user?: UserEntity;
   loading?: boolean;
 }
