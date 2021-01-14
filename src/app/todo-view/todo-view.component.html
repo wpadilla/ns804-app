@@ -1,31 +1,31 @@
-<h3 *ngIf="loading | async">Loading...</h3>
-<b>Titulo:</b> &nbsp; <span *ngIf="!edit; else inputTitle">{{ todo && todo.title }}</span>
+<div class="container display-flex justify-content-c flex-direction-c align-items-c">
+  <h3 *ngIf="loading | async">Loading...</h3>
+  <div>
+    <div class="display-flex align-items-c">
+      <h2 class="fs-3">Titulo:</h2>
+      <span *ngIf="!edit; else inputTitle" class="fs-2">{{ todo && todo.title }}</span>
+      <ng-template #inputTitle>
+        <div class="form-control">
+          <input type="text" [formControl]="title">
+        </div>
+      </ng-template>
+    </div>
+    <div class="display-flex align-items-c">
+      <h2 class="fs-3">Description:</h2> &nbsp; <span class="fs-2" *ngIf="!edit; else inputDesc">{{ todo && todo.desc }}</span>
+      <ng-template #inputDesc>
+        <div class="form-control">
+          <input type="text" [formControl]="desc">
+        </div>
+      </ng-template>
+    </div>
 
-<ng-template #inputTitle>
-  <input type="text" [formControl]="title">
-</ng-template>
-<br>
-<br>
-<b>Description:</b> &nbsp; <span *ngIf="!edit; else inputDesc">{{ todo && todo.desc }}</span>
-<ng-template #inputDesc>
-  <input type="text" [formControl]="desc">
-</ng-template>
+  <button class="btn" *ngIf="!edit" (click)="onEdit()" [disabled]="loading | async">Edit</button>
+  <div *ngIf="edit">
+    <button class="btn" *ngIf="edit" (click)="edit = false" [disabled]="loading | async">Cancel</button>
+  </div>
+  <div *ngIf="edit">
+    <button class="btn btn-primary" (click)="update()" [disabled]="loading | async">Update</button>
+  </div>
+  <button class="btn" (click)="deleteTodo()" [disabled]="loading | async">Delete</button>
+</div>
 
-<br>
-<br>
-<button *ngIf="!edit" (click)="onEdit()" [disabled]="loading | async">Edit</button>
-<br>
-<div *ngIf="edit">
-  <button *ngIf="edit" (click)="edit = false" [disabled]="loading | async">Cancel</button>
-  <br>
-  <br>
-</div>
-<div *ngIf="edit">
-  <button (click)="update()" [disabled]="loading | async">Update</button>
-<br>
-</div>
-<br>
-<button (click)="deleteTodo()" [disabled]="loading | async">Delete</button>
-<br>
-<br>
-<a routerLink="" >Go to Home </a>
