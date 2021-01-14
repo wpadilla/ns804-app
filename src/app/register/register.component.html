@@ -1,21 +1,41 @@
-<div>
-  <h3 *ngIf="loading | async">Loading...</h3>
-  <div>
-    <input type="text" [formControl]="email" placeholder="email" >
+
+<app-loading *ngIf="(auth | async).loading"></app-loading>
+<div class="container" [@startLoading]="(startLoading) ? 'loading' : 'loaded'">
+  <div class="left-side-container">
+    <div class="form-container" @fadeIn>
+      <div class="display-flex justify-content-c align-items-c flex-direction-c">
+        <img src="/assets/images/logo.png" class="w-5" alt="App Logo">
+        <h1 class="mb-1">Register</h1>
+      </div>
+      <div class="form-control mb-2">
+        <input
+          type="text"
+          [formControl]="email"
+          placeholder="Email" >
+      </div>
+      <div class="form-control">
+        <input
+          type="password"
+          [formControl]="password"
+          placeholder="Password" >
+      </div>
+      <div class="display-flex align-items-c mt-1 flex-direction-c">
+        <p class="error-msg mb-1">{{ (auth | async).err ? (auth | async).err.message : '' }}</p>
+        <button
+          class="btn"
+          [class.btn-primary]="(email.value && password.value)"
+          (click)="(email.value && password.value) && register()"
+          [disabled]="(auth | async).loading">
+          Register
+        </button>
+      </div>
+    </div>
+    <div class="user-plus-icon" @popIn>
+      <button  tooltip="Go to Login" (click)="goToLogin()" [disabled]="(auth | async).loading" class="btn">
+        <img src="/assets/icons/user.svg" />
+      </button>
+    </div>
   </div>
-  <br>
-  <div>
-    <input type="password" [formControl]="password" placeholder="password" >
-  </div>
-  <br>
-  <div>
-    <button (click)="register()" [disabled]="loading | async">Register</button>
-  </div>
-  <br>
-  <span class="error-msg">{{ (registerErr | async) && (registerErr | async).message }}</span>
-  <br>
-  <br>
-  <div>
-    <a *ngIf="!(loading | async)" [routerLink]="'login'">Go to Login</a>
-  </div>
+  <div class="right-side-container" @horizonTalSlide></div>
 </div>
+

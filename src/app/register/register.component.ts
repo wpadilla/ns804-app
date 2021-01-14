@@ -5,18 +5,40 @@ import { Store } from '@ngrx/store';
 import AppState from '../store/models/app-state.model';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthState } from '../store/reducers/auth.reducer';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { fadeInAnimation, horizontalSlideAnimation, popInAnimation } from '../../utils/animations';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  animations: [
+    trigger('startLoading', [
+      state('loaded', style({
+        left: 0,
+      })),
+      state('loading', style({
+        left: '-550px',
+      })),
+      transition('loaded => loading', [
+        animate('.3s .1s ease-out')
+      ]),
+      transition('loading => loaded', [
+        animate('.3s .1s ease-in')
+      ]),
+    ]),
+    fadeInAnimation,
+    popInAnimation,
+    horizontalSlideAnimation,
+  ],
 })
 export class RegisterComponent implements OnInit {
   email: FormControl = new FormControl();
   password: FormControl = new FormControl();
-  loading: Observable<boolean> = this.store.select((state: AppState) => state.auth && state.auth.loading);
-  registerErr: Observable<Error> = this.store.select((state: AppState) => state.auth && state.auth.err);
-
+  auth: Observable<AuthState> = this.store.select((state: AppState) => state.auth || {});
+  startLoading: boolean | any = undefined;
+  open: boolean;
   constructor(
     private store: Store<AppState>,
     public router: Router,
@@ -26,20 +48,24 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
+    this.startLoading = true;
     const payload = { email: this.email.value, password: this.password.value };
     this.store.dispatch(new RegisterAction(payload));
     this.email.disable();
     this.password.disable();
-    this.loading.subscribe(loadState => {
-      if(!loadState) {
+    this.auth.subscribe(auth => {
+      if(!auth.loading) {
         this.email.enable();
         this.password.enable();
-        this.registerErr.subscribe(err => {
-          if(!err) {
-            this.router.navigate(['login']);
-          }
-        });
+        this.startLoading = false;
+      }
+      if (auth.err === undefined) {
+        this.router.navigate(['login']);
       }
     });
+  }
+
+  goToLogin(): void {
+    this.router.navigate(['login'])
   }
 }

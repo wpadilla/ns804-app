@@ -70,6 +70,6 @@ import { HeaderComponent } from './header/header.component';
     TodoService,
     TokenService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

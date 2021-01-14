@@ -52,7 +52,7 @@ export const topSlideAnimation = trigger('topSlide', [
 
 export const routerSlideInAnimation =
   trigger('routeAnimations', [
-    transition('* <=> *', [
+    transition('Login => Register', [
       style({ position: 'relative' }),
       query(':enter, :leave', [
         style({
