@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { fadeInAnimation, topSlideAnimation } from '../../utils/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,10 @@ import { fadeInAnimation, topSlideAnimation } from '../../utils/animations';
 })
 export class HeaderComponent {
   @Input() tokenAvailable;
-  constructor() {}
+  constructor(private router: Router) {}
 
   logOut(): void {
     localStorage.removeItem('token');
-    location.href = '/login';
+    this.router.navigate(['/login']);
   }
 }

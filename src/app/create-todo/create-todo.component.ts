@@ -32,12 +32,14 @@ export class CreateTodoComponent implements OnInit {
     this.store.dispatch(new AddTodoAction(payload));
     this.title.disable();
     this.desc.disable();
-    this.loading.subscribe(loadStatus => {
+    const subscription = this.loading.subscribe(loadStatus => {
       if (!loadStatus){
         this.title.enable();
         this.desc.enable();
         this.router.navigate(['']);
+        subscription.unsubscribe();
       }
     });
+
   }
 }

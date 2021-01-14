@@ -14,6 +14,7 @@ import {
   transition,
 } from '@angular/animations';
 import { fadeInAnimation, horizontalSlideAnimation, popInAnimation } from '../../utils/animations';
+import { LoadTodoListAction } from '../store/actions/todoList.actions';
 
 @Component({
   selector: 'app-login',
@@ -40,21 +41,16 @@ import { fadeInAnimation, horizontalSlideAnimation, popInAnimation } from '../..
   ],
 })
 
-export class LoginComponent implements OnInit  {
+export class LoginComponent  {
   email: FormControl = new FormControl();
   password: FormControl = new FormControl();
   auth: Observable<AuthState> = this.store.select((state: AppState) => state.auth || {});
   startLoading: boolean;
-  fadeIn: boolean;
 
   constructor(
     private store: Store<AppState>,
     private router: Router,
   ) { }
-
-  ngOnInit(): void {
-    setTimeout( () => this.fadeIn = true);
-  }
 
   login(): void {
     this.startLoading = true;
@@ -68,14 +64,14 @@ export class LoginComponent implements OnInit  {
         this.password.enable();
         this.startLoading = false;
       }
-      if (auth.err === undefined) {
-        location.href = '/'
-      }
     });
 
   }
 
   goToRegister(): void {
+
     this.router.navigate(['register']);
+
+
   }
 }

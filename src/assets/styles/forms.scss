@@ -45,3 +45,12 @@
   background-color: $danger;
   color: #fff;
 }
+
+@media screen and (max-width: 500px) {
+  .form-control {
+    input {
+      max-width: 90vw;
+      font-size: 14px;
+    }
+  }
+}

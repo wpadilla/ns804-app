@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import TodoEntity from '../store/models/todo.model';
 import { Store } from '@ngrx/store';
 import AppState from '../store/models/app-state.model';
@@ -32,7 +32,8 @@ export class TodoListComponent implements OnInit {
   constructor(
     private store: Store,
     private router: Router,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.store.dispatch(new LoadTodoListAction());

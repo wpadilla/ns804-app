@@ -1,9 +1,9 @@
 <app-loading *ngIf="loading | async"></app-loading>
 <div class="container display-flex justify-content-c align-items-c" >
-    <div class="ml-2">
+    <div>
       <div class="display-flex flex-direction-c mb-2">
         <b class="fs-2 ml-1" *ngIf="edit" @fadeIn>Titulo:</b>
-        <span *ngIf="!edit; else inputTitle" class="fs-2" @fadeIn>{{ todo && todo.title }}</span>
+        <span *ngIf="!edit; else inputTitle" class="fs-3" @fadeIn>{{ todo && todo.title }}</span>
         <ng-template #inputTitle>
           <div class="form-control" @fadeIn>
             <input class="input" type="text" [formControl]="title">
@@ -12,14 +12,14 @@
       </div>
       <div class="display-flex flex-direction-c">
         <b class="fs-2 ml-1" *ngIf="edit" @fadeIn>Description:</b>
-        <span @fadeIn class="fs-2" *ngIf="!edit; else inputDesc">{{ todo && todo.desc }}</span>
+        <span @fadeIn class="fs-3" *ngIf="!edit; else inputDesc">{{ todo && todo.desc }}</span>
         <ng-template #inputDesc>
           <div class="form-control" @fadeIn>
             <input class="input" type="text" [formControl]="desc">
           </div>
         </ng-template>
       </div>
-      <div class="mt-2 display-flex justify-content-c">
+      <div class="mt-2 display-flex justify-content-c btn-options">
         <button @fadeIn class="btn mr-2" *ngIf="edit" (click)="edit = false" [disabled]="loading | async">Cancel</button>
         <button @fadeIn *ngIf="edit" class="btn btn-primary" (click)="update()" [disabled]="loading | async">Update</button>
       </div>

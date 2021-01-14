@@ -62,11 +62,12 @@ export class TodoViewComponent implements OnInit {
 
   deleteTodo(): void {
     this.store.dispatch(new DeleteTodoAction(this.id));
-    this.loading.subscribe(loadStatus => {
+    const subscription = this.loading.subscribe(loadStatus => {
       if(!loadStatus ) {
         this.router.navigate(['/']);
+        subscription.unsubscribe();
       }
-      }).unsubscribe();
+      });
   }
 
   update(): void {
@@ -74,17 +75,14 @@ export class TodoViewComponent implements OnInit {
     this.store.dispatch(new UpdateTodoAction({id: this.id, data }));
     this.desc.disable();
     this.title.disable();
-    this.loading.subscribe(loadStatus => {
+    const subscription = this.loading.subscribe(loadStatus => {
       if( !loadStatus ) {
         this.desc.enable();
         this.title.enable();
         this.edit = false;
-        this.store.select((state: AppState) => {
-          if (state.todo){
-            this.todo = state.todo.data;
-          }
-        })
+        this.todo = { title: this.title.value, desc: this.desc.value } as any;
+        subscription.unsubscribe();
       }
-    }).unsubscribe();
+    });
   }
 }

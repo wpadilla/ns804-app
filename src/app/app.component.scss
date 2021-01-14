@@ -2,8 +2,6 @@
   @import "~src/assets/styles/forms.scss";
   @import "~src/assets/styles/flexbox.scss";
   @import "~src/assets/styles/spacing.scss";
-  // font size classes
-  @include list-loop('.fs-', 'font-size');
 
   * {
     font-family: 'Yusei Magic', sans-serif;

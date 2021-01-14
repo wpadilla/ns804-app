@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { of, pipe } from 'rxjs';
 import { map, catchError, exhaustMap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import {
@@ -25,11 +25,12 @@ export class AuthEffect {
       .pipe(
         map((res: TokenEntity) => {
           localStorage.setItem('token', res.token);
+          this.router.navigate(['/']);
           return new LoginSuccessAction(res);
         }),
         catchError((err: any) => {
           return of(new LoginFailureAction(err.error));
-        })
+        }),
       ))
     )
   );
