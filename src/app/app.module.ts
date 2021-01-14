@@ -29,6 +29,7 @@ import { CreateTodoComponent } from './create-todo/create-todo.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { LoadingComponent } from './loading/loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TodoListComponent,
     TodoViewComponent,
     CreateTodoComponent,
-    LoadingComponent
+    LoadingComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
