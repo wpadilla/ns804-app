@@ -24,7 +24,6 @@ import { TodoViewComponent } from './todo-view/todo-view.component';
 import { TodoService } from './services/todo.service';
 import { TodoEffect } from './store/effects/todo.effect';
 import { todoReducer } from './store/reducers/todo.reducer';
-import TokenService from './services/token.service';
 import { CreateTodoComponent } from './create-todo/create-todo.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { LoadingComponent } from './loading/loading.component';
@@ -68,7 +67,6 @@ import { HeaderComponent } from './header/header.component';
     PublicGuardService,
     TodoListService,
     TodoService,
-    TokenService,
   ],
   bootstrap: [AppComponent],
 })
