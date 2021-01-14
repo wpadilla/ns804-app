@@ -22,6 +22,7 @@ export class TodoListComponent implements OnInit {
     .select((state: AppState) => state.todoList ? state.todoList.data : [])
     .pipe((data: Observable<any>) => {
       data.subscribe( res => {
+        console.log(res, 'hols');
         this.empty = !res.length;
       });
       return data;

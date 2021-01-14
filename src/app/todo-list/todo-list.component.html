@@ -1,21 +1,26 @@
 <app-loading *ngIf="loading | async"></app-loading>
 <div class="container display-flex flex-direction-c align-items-c justify-content-c">
-  <div class="top-shadow"></div>
-  <div class="todo-list-container" @fadeIn>
-    <div class="underline-left"></div>
-    <div class="todo-list">
-      <div *ngFor="let todo of todos | async; let i=index;"
-           class="todo-item pt-1 pb-1 pl-3 pr-3 fs-5 display-flex justify-content-c"
-           (click)="onTodoClick(todo)"
-      >
-        <span class="todo-title">{{todo.title}}</span>
-        <div class="underline" *ngIf="i != (todos | async).length - 1"></div>
+  <div *ngIf="!empty">
+    <div class="top-shadow"></div>
+    <div class="todo-list-container" @fadeIn>
+      <div class="underline-left"></div>
+      <div class="todo-list">
+        <div *ngFor="let todo of todos | async; let i=index;"
+             class="todo-item pt-1 pb-1 pl-3 pr-3 fs-5 display-flex justify-content-c"
+             (click)="onTodoClick(todo)"
+        >
+          <span class="todo-title">{{todo.title}}</span>
+          <div class="underline" *ngIf="i != (todos | async).length - 1"></div>
+        </div>
       </div>
-      <span *ngIf="empty && !(loading | async)">Empty list</span>
+      <div class="underline-right"></div>
     </div>
-    <div class="underline-right"></div>
+    <div class="bottom-shadow"></div>
   </div>
-  <div class="bottom-shadow"></div>
+  <div *ngIf="empty && !(loading | async)">
+    <h2 class="fs-4">Empty list</h2>
+  </div>
+
   <div class="go-to-create" @popIn>
     <button tooltip="Create Todo" (click)="goToCreate()" class="btn">
       <img src="/assets/icons/todo-plus.svg" />

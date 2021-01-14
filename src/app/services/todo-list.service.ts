@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import UserEntity from '../store/models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import TokenService from './token.service';
 
@@ -20,7 +18,7 @@ export class TodoListService extends TokenService {
     return this.http.get('https://serverless.wpadilla.vercel.app/api/todos',
       {
         headers: {
-          Authorization: this.token,
+          Authorization: localStorage.getItem('token'),
         }
       });
   }
