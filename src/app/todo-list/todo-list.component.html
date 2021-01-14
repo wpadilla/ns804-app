@@ -1,4 +1,3 @@
-<h2>All Todos <button (click)="goToCreate()" style="float: right">Go to Create Todo</button></h2>
 <h4 *ngIf="loading | async">Loading...</h4>
 <div class="container display-flex flex-direction-c align-items-c justify-content-c">
   <div class="top-shadow"></div>
@@ -17,4 +16,9 @@
     <div class="underline-right"></div>
   </div>
   <div class="bottom-shadow"></div>
+  <div class="go-to-create" @popIn>
+    <button tooltip="Create Todo" (click)="goToCreate()" class="btn">
+      <img src="/assets/icons/user-plus-solid.svg" />
+    </button>
+  </div>
 </div>

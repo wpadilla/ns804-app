@@ -5,11 +5,15 @@ import AppState from '../store/models/app-state.model';
 import { Observable } from 'rxjs';
 import { LoadTodoListAction } from '../store/actions/todoList.actions';
 import { Router } from '@angular/router';
+import { popInAnimation } from '../../utils/animations';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  styleUrls: ['./todo-list.component.scss'],
+  animations: [
+    popInAnimation,
+  ]
 })
 export class TodoListComponent implements OnInit {
   empty = false;
