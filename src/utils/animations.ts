@@ -54,26 +54,27 @@ export const routerSlideInAnimation =
   trigger('routeAnimations', [
     transition('* <=> HomePage', [
       style({ position: 'relative' }),
-      query(':enter, :leave', [
+      query(':enter', [
         style({
           position: 'absolute',
           top: 0,
           left: 0,
-          width: '100%'
+          width: '100%',
+          background: '#fff'
         })
       ]),
       query(':enter', [
-        style({ left: '-100%' })
+        style({ left: '-100%', background: '#fff' })
       ]),
       query(':leave', animateChild()),
       group([
         query(':leave', [
-          animate('300ms ease-out', style({ left: '100%' }))
+          animate('300ms ease-out', style({ left: '100%', background: '#fff' }))
         ]),
         query(':enter', [
-          animate('300ms ease-out', style({ left: '0%' }))
+          animate('300ms ease-out', style({ left: '0%', background: '#fff' }))
         ])
       ]),
       query(':enter', animateChild()),
-    ]),
+    ])
   ]);
