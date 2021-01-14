@@ -1,10 +1,21 @@
 <h2>All Todos <button (click)="goToCreate()" style="float: right">Go to Create Todo</button></h2>
 <h4 *ngIf="loading | async">Loading...</h4>
-<ul>
-  <div *ngFor="let todo of todos | async" class="todo-item" (click)="onTodoClick(todo)">
-    {{todo.title}} &nbsp; &nbsp;
+<div class="container display-flex flex-direction-c align-items-c justify-content-c">
+  <div class="top-shadow"></div>
+  <div class="todo-list-container">
+    <div class="underline-left"></div>
+    <div class="todo-list">
+      <div *ngFor="let todo of todos | async; let i=index;"
+           class="todo-item pt-1 pb-1 pl-3 pr-3 fs-5 display-flex justify-content-c"
+           (click)="onTodoClick(todo)"
+      >
+        <span>{{todo.title}}</span>
+        <div class="underline" *ngIf="i != (todos | async).length - 1"></div>
+      </div>
+      <span *ngIf="empty && !(loading | async)">Empty list</span>
+    </div>
+    <div class="underline-right"></div>
   </div>
 
-  <span *ngIf="empty && !(loading | async)">Empty list</span>
-</ul>
-
+  <div class="bottom-shadow"></div>
+</div>
