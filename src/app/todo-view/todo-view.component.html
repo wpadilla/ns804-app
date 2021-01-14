@@ -1,5 +1,5 @@
 <app-loading *ngIf="loading | async"></app-loading>
-<div class="container display-flex justify-content-c align-items-c" >
+<div class="container display-flex justify-content-c align-items-c" [class.pt-5]="edit">
     <div>
       <div class="display-flex flex-direction-c mb-2">
         <b class="fs-2 ml-1" *ngIf="edit" @fadeIn>Titulo:</b>
