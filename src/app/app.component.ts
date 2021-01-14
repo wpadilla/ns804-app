@@ -14,18 +14,7 @@ import { routerSlideInAnimation } from '../utils/animations';
 export class AppComponent implements OnInit {
 
   title = 'app';
-  constructor(private router: Router) {}
-  tokenAvailable: boolean;
-  ngOnInit(): void {
-    this.router.events.subscribe(e => {
-      this.tokenAvailable = !!localStorage.getItem('token');
-    });
-  }
-
-  logOut(): void {
-    localStorage.removeItem('token');
-    location.href = '/login';
-  }
+  constructor() {}
 
   prepareRoute(outlet: RouterOutlet): void {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;

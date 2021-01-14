@@ -14,11 +14,11 @@ $unit: 'rem';
 
 
 // padding classes
+@include list-loop('.p-', 'padding');
 @include list-loop('.pl-', 'padding-left');
 @include list-loop('.pr-', 'padding-right');
 @include list-loop('.pb-', 'padding-bottom');
 @include list-loop('.pt-', 'padding-top');
-@include list-loop('.p-', 'padding');
 
 // margin classes
 @include list-loop('.ml-', 'margin-left');

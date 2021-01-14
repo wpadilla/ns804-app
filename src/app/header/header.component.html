@@ -1,1 +1,8 @@
-<p>header works!</p>
+<div class="header-container display-flex justify-content-sb p-1">
+  <div class="logo">
+    <img src="/assets/images/logo.png" class="w-3" alt="App Logo">
+  </div>
+  <div  class="log-out">
+    <a href="#" *ngIf="tokenAvailable" (click)="logOut()" >Log Out</a>
+  </div>
+</div>
