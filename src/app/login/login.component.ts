@@ -54,7 +54,7 @@ export class LoginComponent  {
 
   login(): void {
     this.startLoading = true;
-    const payload = { email: this.email.value, password: this.password.value };
+    const payload = { email: String(this.email.value).toLowerCase().replace(/[' ']/gi, ''), password: this.password.value };
     this.store.dispatch(new LoginAction(payload));
     this.email.disable();
     this.password.disable();

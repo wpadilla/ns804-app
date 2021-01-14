@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     this.startLoading = true;
-    const payload = { email: this.email.value, password: this.password.value };
+    const payload = { email: String(this.email.value).toLowerCase().replace(/[' ']/gi, ''), password: this.password.value };
     this.store.dispatch(new RegisterAction(payload));
     this.email.disable();
     this.password.disable();

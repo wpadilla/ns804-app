@@ -60,7 +60,8 @@ export const routerSlideInAnimation =
           top: 0,
           left: 0,
           width: '100%',
-          background: '#fff'
+          background: '#fff',
+          zIndex: 999
         })
       ]),
       query(':enter', [
