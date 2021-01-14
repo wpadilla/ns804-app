@@ -8,7 +8,7 @@
            class="todo-item pt-1 pb-1 pl-3 pr-3 fs-5 display-flex justify-content-c"
            (click)="onTodoClick(todo)"
       >
-        <span>{{todo.title}}</span>
+        <span class="todo-title">{{todo.title}}</span>
         <div class="underline" *ngIf="i != (todos | async).length - 1"></div>
       </div>
       <span *ngIf="empty && !(loading | async)">Empty list</span>
@@ -18,7 +18,7 @@
   <div class="bottom-shadow"></div>
   <div class="go-to-create" @popIn>
     <button tooltip="Create Todo" (click)="goToCreate()" class="btn">
-      <img src="/assets/icons/user-plus-solid.svg" />
+      <img src="/assets/icons/todo-plus.svg" />
     </button>
   </div>
 </div>

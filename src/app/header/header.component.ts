@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +6,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Input() tokenAvailable;
+  constructor() {}
 
-  constructor(private router: Router) {}
-  tokenAvailable: boolean;
-
-  ngOnInit(): void {
-    this.router.events.subscribe(e => {
-      this.tokenAvailable = !!localStorage.getItem('token');
-    });
-  }
   logOut(): void {
     localStorage.removeItem('token');
     location.href = '/login';

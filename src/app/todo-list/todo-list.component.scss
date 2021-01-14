@@ -79,8 +79,16 @@
   button {
     border-radius: 50%;
     display: flex;
-    padding: 25px;
+    padding: 26px;
     cursor: pointer;
+    width: 100px;
+    height: 100px;
+    align-items: center;
   }
 }
 
+.todo-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

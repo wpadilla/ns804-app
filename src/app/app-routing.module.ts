@@ -13,37 +13,31 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     canActivate: [AuthGuard],
-    data: { animation: 'init'}
   },
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [PublicGuard],
-    data: { animation: 'init'}
   },
   {
     path: 'register',
     component: RegisterComponent,
     canActivate: [PublicGuard],
-    data: { animation: 'init'}
 
   },
   {
     path: 'todo/:id',
     component: TodoViewComponent,
     canActivate: [AuthGuard],
-    data: { animation: 'init'}
   },
   {
     path: 'create-todo',
     component: CreateTodoComponent,
     canActivate: [AuthGuard],
-    data: { animation: 'init'},
   },
   {
     path: '**',
     redirectTo: '',
-    data: { animation: 'init'}
   }
 ];
 
