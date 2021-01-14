@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
     this.store.dispatch(new RegisterAction(payload));
     this.email.disable();
     this.password.disable();
-    this.auth.subscribe(auth => {
+    const subscription = this.auth.subscribe(auth => {
       if(!auth.loading) {
         this.email.enable();
         this.password.enable();
@@ -61,6 +61,7 @@ export class RegisterComponent implements OnInit {
       }
       if (auth.err === undefined) {
         this.router.navigate(['login']);
+        subscription.unsubscribe();
       }
     });
   }
