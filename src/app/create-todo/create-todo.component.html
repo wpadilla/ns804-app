@@ -1,19 +1,15 @@
-<div>
-  <h3 *ngIf="loading | async">Loading...</h3>
-  <div>
-    <input type="text" [formControl]="title" placeholder="title" >
-    <a routerLink="" class="go-to-home"> Go To Home</a>
+<app-loading *ngIf="loading | async"></app-loading>
+<div class="container display-flex justify-content-c align-items-c flex-direction-c">
+  <h2 align="center" class="fs-3 mb-2">Create Todo</h2>
+  <div class="form-control mb-2">
+    <input class="input"type="text" [formControl]="title" placeholder="title" >
   </div>
-  <br>
-  <div>
-    <input type="text" [formControl]="desc" placeholder="desc" >
+  <div class="form-control mb-2">
+    <input class="input" type="text" [formControl]="desc" placeholder="desc" >
   </div>
-  <br>
   <div>
-    <button (click)="create()" [disabled]="!title.value || !desc.value || (loading | async)">Create Todo</button>
+    <button class="btn fs-2"  [class.btn-primary]="title.value && desc.value && !(loading | async)" (click)="create()" [disabled]="!title.value || !desc.value || (loading | async)">Create Todo</button>
   </div>
-  <br>
   <div>
-    <a *ngIf="!loading" routerLink="">Go to Home</a>
   </div>
 </div>
