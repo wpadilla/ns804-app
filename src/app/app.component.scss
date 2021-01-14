@@ -6,6 +6,7 @@
   @include list-loop('.fs-', 'font-size');
 
   * {
+    font-family: 'Yusei Magic', sans-serif;
     margin: 0;
     transition: all .3s ease;
   }
