@@ -40,6 +40,15 @@ export const horizontalSlideAnimation = trigger('horizonTalSlide', [
     ]),
   ]);
 
+export const topSlideAnimation = trigger('topSlide', [
+  transition(':enter', [
+    style({ transform: 'translateY(-1000px)' }),
+    animate('.7s', style({ transform: 'translateY(0)' })),
+  ]),
+  transition(':leave', [
+    animate('.7s', style({ transform: 'translateY(0)' })),
+  ]),
+]);
 
 export const routerSlideInAnimation =
   trigger('routeAnimations', [

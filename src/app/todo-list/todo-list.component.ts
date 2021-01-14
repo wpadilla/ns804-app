@@ -5,7 +5,7 @@ import AppState from '../store/models/app-state.model';
 import { Observable } from 'rxjs';
 import { LoadTodoListAction } from '../store/actions/todoList.actions';
 import { Router } from '@angular/router';
-import { popInAnimation } from '../../utils/animations';
+import { fadeInAnimation, popInAnimation } from '../../utils/animations';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,6 +13,7 @@ import { popInAnimation } from '../../utils/animations';
   styleUrls: ['./todo-list.component.scss'],
   animations: [
     popInAnimation,
+    fadeInAnimation,
   ]
 })
 export class TodoListComponent implements OnInit {
