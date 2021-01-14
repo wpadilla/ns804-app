@@ -6,7 +6,7 @@ import AppState from '../store/models/app-state.model';
 import { DeleteTodoAction, LoadTodoAction, UpdateTodoAction } from '../store/actions/todo.actions';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { fadeInAnimation } from '../../utils/animations';
+import { fadeInAnimation, popInAnimation } from '../../utils/animations';
 
 @Component({
   selector: 'app-todo-view',
@@ -14,6 +14,7 @@ import { fadeInAnimation } from '../../utils/animations';
   styleUrls: ['./todo-view.component.scss'],
   animations: [
     fadeInAnimation,
+    popInAnimation,
   ]
 })
 export class TodoViewComponent implements OnInit {

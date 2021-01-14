@@ -1,28 +1,35 @@
 <app-loading *ngIf="loading | async"></app-loading>
 <div class="container display-flex justify-content-c align-items-c" >
-    <div>
-      <div class="display-flex align-items-c">
-        <h2 class="fs-3" *ngIf="edit" @fadeIn>Titulo:</h2>
-        <span *ngIf="!edit; else inputTitle" class="fs-2">{{ todo && todo.title }}</span>
+    <div class="ml-2">
+      <div class="display-flex flex-direction-c mb-2">
+        <b class="fs-2 ml-1" *ngIf="edit" @fadeIn>Titulo:</b>
+        <span *ngIf="!edit; else inputTitle" class="fs-2" @fadeIn>{{ todo && todo.title }}</span>
         <ng-template #inputTitle>
           <div class="form-control" @fadeIn>
-            <input type="text" [formControl]="title">
+            <input class="input" type="text" [formControl]="title">
           </div>
         </ng-template>
       </div>
-      <div class="display-flex align-items-c">
-        <h2 class="fs-3" *ngIf="edit" @fadeIn>Description:</h2> &nbsp; <span class="fs-2" *ngIf="!edit; else inputDesc">{{ todo && todo.desc }}</span>
+      <div class="display-flex flex-direction-c">
+        <b class="fs-2 ml-1" *ngIf="edit" @fadeIn>Description:</b>
+        <span @fadeIn class="fs-2" *ngIf="!edit; else inputDesc">{{ todo && todo.desc }}</span>
         <ng-template #inputDesc>
           <div class="form-control" @fadeIn>
-            <input type="text" [formControl]="desc">
+            <input class="input" type="text" [formControl]="desc">
           </div>
         </ng-template>
       </div>
+      <div class="mt-2 display-flex justify-content-c">
+        <button @fadeIn class="btn mr-2" *ngIf="edit" (click)="edit = false" [disabled]="loading | async">Cancel</button>
+        <button @fadeIn *ngIf="edit" class="btn btn-primary" (click)="update()" [disabled]="loading | async">Update</button>
+      </div>
   </div>
-  <div class="horizontal-options display-flex justify-content-c flex-direction-c">
-    <button class="btn mb-1" *ngIf="!edit" (click)="onEdit()" [disabled]="loading | async">Edit</button>
-    <button class="btn mb-1" *ngIf="edit" (click)="edit = false" [disabled]="loading | async">Cancel</button>
-    <button *ngIf="edit" class="btn btn-primary" (click)="update()" [disabled]="loading | async">Update</button>
-    <button class="btn" (click)="deleteTodo()" [disabled]="loading | async">Delete</button>
+  <div class="horizontal-options display-flex justify-content-c flex-direction-c ml-2 mr-2">
+    <button @popIn class="btn btn-primary mb-1" *ngIf="!edit" (click)="onEdit()" [disabled]="loading | async">
+      <img src="/assets/icons/edit.svg" />
+    </button>
+    <button @popIn class="btn btn-danger" (click)="deleteTodo()" [disabled]="loading | async">
+      <img src="/assets/icons/trash.svg" />
+    </button>
   </div>
 </div>

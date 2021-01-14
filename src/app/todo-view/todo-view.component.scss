@@ -7,6 +7,18 @@
 .horizontal-options {
   position: relative;
   button {
-    border-radius: 100%;
+    border-radius: 50%;
+    padding: 19px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    min-width: unset;
+    img {
+      width: 30px;
+    }
   }
+}
+
+.input {
+  font-size: 2rem;
 }
