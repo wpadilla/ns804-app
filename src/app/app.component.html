@@ -1,4 +1,4 @@
-<div>
+<div [@routeAnimations]="prepareRoute(outlet)">
   <app-header *ngIf="tokenAvailable" [tokenAvailable]="tokenAvailable"></app-header>
   <router-outlet #outlet="outlet"></router-outlet>
 </div>
