@@ -6,11 +6,15 @@ import AppState from '../store/models/app-state.model';
 import { DeleteTodoAction, LoadTodoAction, UpdateTodoAction } from '../store/actions/todo.actions';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { fadeInAnimation } from '../../utils/animations';
 
 @Component({
   selector: 'app-todo-view',
   templateUrl: './todo-view.component.html',
-  styleUrls: ['./todo-view.component.scss']
+  styleUrls: ['./todo-view.component.scss'],
+  animations: [
+    fadeInAnimation,
+  ]
 })
 export class TodoViewComponent implements OnInit {
   todo: TodoEntity = {} as any;
