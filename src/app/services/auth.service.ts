@@ -3,6 +3,7 @@ import UserEntity from '../store/models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import environment from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,13 @@ export class AuthService {
   ) { }
 
   public authenticate(credentials: UserEntity): Observable<any> {
-      return this.http.post('https://serverless.wpadilla.vercel.app/api/auth/login',
+      return this.http.post(`${environment.api}auth/login`,
         credentials
       );
   }
 
   public register(credentials: UserEntity): Observable<any> {
-    return this.http.post('https://serverless.wpadilla.vercel.app/api/auth/register',
+    return this.http.post(`${environment.api}auth/register`,
       credentials
     );
   }

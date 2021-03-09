@@ -5,7 +5,7 @@
     <input class="input"type="text" [formControl]="title" placeholder="title" >
   </div>
   <div class="form-control mb-2">
-    <input class="input" type="text" [formControl]="desc" placeholder="desc" >
+    <textarea class="input" type="text" [formControl]="desc" placeholder="desc"> </textarea>
   </div>
   <div>
     <button class="btn fs-2"  [class.btn-primary]="title.value && desc.value && !(loading | async)" (click)="create()" [disabled]="!title.value || !desc.value || (loading | async)">Create Todo</button>

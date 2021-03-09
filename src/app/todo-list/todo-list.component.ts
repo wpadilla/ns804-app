@@ -18,10 +18,13 @@ import { fadeInAnimation, popInAnimation } from '../../utils/animations';
 })
 export class TodoListComponent implements OnInit {
   empty = false;
+
+  filteredTodos: TodoEntity[] = [];
+
   todos: Observable<TodoEntity[]> = this.store
     .select((state: AppState) => state.todoList ? state.todoList.data : [])
     .pipe((data: Observable<any>) => {
-      data.subscribe( res => {
+      data.subscribe(res => {
         this.empty = !res.length;
       });
       return data;
@@ -37,6 +40,7 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new LoadTodoListAction());
+    this.todos.subscribe(res => this.filteredTodos = res);
   }
 
   onTodoClick(todo: TodoEntity): void {
@@ -45,5 +49,26 @@ export class TodoListComponent implements OnInit {
 
   goToCreate(): void {
     this.router.navigate(['create-todo']);
+  }
+
+  searchTodos(event): void {
+    const {value} = event.target;
+
+    this.todos.subscribe(res => {
+
+      this.filteredTodos = res.filter(item => {
+        const regExp = /[ ]gi/;
+        const trimmedValue = value && value.toLowerCase().replace(regExp, '');
+        const stringifiedItem = JSON.stringify(item).toLowerCase().replace(regExp, '');
+
+        const exists = trimmedValue && !!stringifiedItem.includes(trimmedValue);
+
+        return value ? exists : item;
+      });
+
+      this.empty = !this.filteredTodos.length;
+
+
+    });
   }
 }

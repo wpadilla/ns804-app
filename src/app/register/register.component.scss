@@ -16,3 +16,16 @@
     }
   }
 }
+
+@media screen and (max-width: 675px) {
+  .user-plus-icon {
+    bottom: 20px;
+    right: 20px;
+    button {
+      width: 70px;
+      img {
+        width: 20px;
+      }
+    }
+  }
+}

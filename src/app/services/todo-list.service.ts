@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import environment from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class TodoListService {
   }
 
   public loadTodos(): Observable<any> {
-    return this.http.get('https://serverless.wpadilla.vercel.app/api/todos',
+    return this.http.get(`${environment.api}todos`,
       {
         headers: {
           Authorization: localStorage.getItem('token'),

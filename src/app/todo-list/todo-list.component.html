@@ -1,11 +1,12 @@
 <app-loading *ngIf="loading | async"></app-loading>
-<div class="container display-flex flex-direction-c align-items-c justify-content-c">
+<div class="container display-flex flex-direction-c align-items-c">
+  <input type="text" (keyup)="searchTodos($event)" class="search-input" placeholder="Search">
   <div *ngIf="!empty">
     <div class="top-shadow"></div>
     <div class="todo-list-container" @fadeIn>
       <div class="underline-left"></div>
       <div class="todo-list">
-        <div *ngFor="let todo of todos | async; let i=index;"
+        <div *ngFor="let todo of filteredTodos; let i=index;"
              class="todo-item pt-1 pb-1 pl-3 pr-3 fs-5 display-flex justify-content-c"
              (click)="onTodoClick(todo)"
         >

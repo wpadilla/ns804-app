@@ -12,10 +12,10 @@
       </div>
       <div class="display-flex flex-direction-c">
         <b class="fs-2 ml-1" *ngIf="edit" @fadeIn>Description:</b>
-        <span @fadeIn class="fs-3" *ngIf="!edit; else inputDesc">{{ todo && todo.desc }}</span>
+        <pre @fadeIn class="fs-3 todo-desc" *ngIf="!edit; else inputDesc">{{ todo && todo.desc }}</pre>
         <ng-template #inputDesc>
           <div class="form-control" @fadeIn>
-            <input class="input" type="text" [formControl]="desc">
+            <textarea class="input" type="text" [formControl]="desc"></textarea>
           </div>
         </ng-template>
       </div>
